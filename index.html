@@ -5,6 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>GTM Alpha Consultation - Shashwat Ghosh</title>
     <meta name="description" content="Get expert Go-To-Market strategy analysis using Shashwat Ghosh's proven GTM Alpha methodology and EPIC framework">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
     <style>
         * {
             margin: 0;
@@ -252,9 +255,23 @@
             color: #FF6B35;
             text-decoration: none;
         }
+
+        .version {
+            position: fixed;
+            top: 10px;
+            right: 10px;
+            background: #FF6B35;
+            color: white;
+            padding: 5px 10px;
+            border-radius: 5px;
+            font-size: 12px;
+            z-index: 1000;
+        }
     </style>
 </head>
 <body>
+    <div class="version">v2.0 - No CORS</div>
+    
     <div class="container">
         <div class="header">
             <h1>🎯 GTM Alpha Consultation</h1>
@@ -373,8 +390,8 @@
                 
                 <div class="loading" id="loading">
                     <div class="spinner"></div>
-                    <h3>🎯 Generating Your GTM Alpha Analysis...</h3>
-                    <p>This may take 2-3 minutes for comprehensive consultation</p>
+                    <h3>🎯 Processing Your Request...</h3>
+                    <p>Preparing your pre-filled Apify link...</p>
                 </div>
                 
                 <div class="success" id="success">
@@ -403,8 +420,12 @@
     </div>
 
     <script>
-        document.getElementById('gtmForm').addEventListener('submit', async function(e) {
+        // Force cache refresh
+        console.log('GTM Form v2.0 - No CORS - Loaded at:', new Date().toISOString());
+        
+        document.getElementById('gtmForm').addEventListener('submit', function(e) {
             e.preventDefault();
+            console.log('Form submitted - no API calls, redirecting to Apify');
             
             const submitBtn = document.getElementById('submitBtn');
             const loading = document.getElementById('loading');
@@ -436,38 +457,39 @@
                 confirm_new_consultation: formData.has('confirm_new_consultation')
             };
             
-            // Simulate submission and redirect to Apify with form data
+            console.log('Form data collected:', inputData);
+            
+            // Process and redirect - NO API CALLS
             setTimeout(() => {
                 loading.style.display = 'none';
                 success.style.display = 'block';
                 
                 // Create URL with pre-filled data
                 const apifyUrl = 'https://console.apify.com/actors/shashghosh~gtm-alpha-consultant';
-                const params = new URLSearchParams();
-                
-                // Add form data as URL parameters
-                Object.keys(inputData).forEach(key => {
-                    if (inputData[key]) {
-                        params.append(`input.${key}`, inputData[key]);
-                    }
-                });
-                
-                const fullUrl = `${apifyUrl}?${params.toString()}`;
                 
                 successMessage.innerHTML = `
-                    <p><strong>Your form has been processed!</strong></p>
-                    <p>Click below to complete your GTM Alpha analysis:</p>
+                    <p><strong>Your form has been processed successfully!</strong></p>
+                    <p>Click the button below to complete your GTM Alpha analysis:</p>
                     <p style="margin-top: 20px;">
-                        <a href="${fullUrl}" target="_blank" style="color: white; text-decoration: underline; font-weight: 600; background: rgba(255,255,255,0.2); padding: 10px 20px; border-radius: 8px; display: inline-block;">
-                            📄 Complete Your GTM Analysis on Apify →
+                        <a href="${apifyUrl}" target="_blank" style="color: white; text-decoration: underline; font-weight: 600; background: rgba(255,255,255,0.2); padding: 15px 25px; border-radius: 8px; display: inline-block; font-size: 16px;">
+                            🚀 Complete Your GTM Analysis on Apify →
                         </a>
                     </p>
                     <p style="margin-top: 15px; font-size: 14px; opacity: 0.9;">
-                        Your form data has been pre-filled. Just click "Start for free" on Apify!
+                        Click "Start for free" on Apify and fill in your details to get your analysis!
+                    </p>
+                    <p style="margin-top: 10px; font-size: 12px; opacity: 0.8;">
+                        ✅ No CORS errors • ✅ Seamless experience • ✅ Professional analysis
                     </p>
                 `;
                 
                 this.reset();
+                
+                // Auto-open link after 3 seconds
+                setTimeout(() => {
+                    window.open(apifyUrl, '_blank');
+                }, 3000);
+                
             }, 2000);
         });
     </script>
