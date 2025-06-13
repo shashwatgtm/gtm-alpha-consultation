@@ -284,10 +284,22 @@
             border-radius: 6px;
             border-left: 3px solid #FF6B35;
         }
+
+        .apify-params {
+            background: rgba(255,255,255,0.1);
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 20px;
+            text-align: left;
+            font-family: monospace;
+            font-size: 12px;
+            max-height: 200px;
+            overflow-y: auto;
+        }
     </style>
 </head>
 <body>
-    <div class="version">v3.0 - Fixed Flow</div>
+    <div class="version">v4.0 - Direct Submit</div>
     
     <div class="container">
         <div class="header">
@@ -340,7 +352,7 @@
                 <div class="form-group">
                     <label for="gtm_challenge">🎯 GTM Challenge & Objectives *</label>
                     <textarea id="gtm_challenge" name="gtm_challenge" required 
-                              placeholder="Describe your specific GTM challenge, question, or objectives in detail">We're a B2B SaaS company struggling with enterprise customer acquisition. Our PLG motion works for SMBs but we can't crack the enterprise market. Sales cycle is too long and we lack proper reference customers for big deals.</textarea>
+                              placeholder="Describe your specific GTM challenge, question, or objectives in detail"></textarea>
                 </div>
                 
                 <div class="form-group">
@@ -348,7 +360,7 @@
                     <select id="business_stage" name="business_stage" required>
                         <option value="">Select Business Stage</option>
                         <option value="bootstrapped-idea">🥾 Bootstrapped: 0-1 (Idea Stage)</option>
-                        <option value="bootstrapped-pmf" selected>🥾 Bootstrapped: Pre-Seed - Product Market Fit (PMF) done</option>
+                        <option value="bootstrapped-pmf">🥾 Bootstrapped: Pre-Seed - Product Market Fit (PMF) done</option>
                         <option value="bootstrapped-seed-equivalent">🥾 Bootstrapped: Seed Stage equivalent</option>
                         <option value="bootstrapped-series-equivalent">🥾 Bootstrapped: Series A/B/C equivalent</option>
                         <option value="bootstrapped-ipo-equivalent">🥾 Bootstrapped: IPO Stage equivalent</option>
@@ -402,23 +414,23 @@
                 </div>
                 
                 <button type="submit" class="submit-btn" id="submitBtn">
-                    🚀 Get My Free GTM Alpha Analysis
+                    🚀 Generate My GTM Alpha Analysis
                 </button>
                 
                 <div class="loading" id="loading">
                     <div class="spinner"></div>
-                    <h3>🎯 Processing Your Request...</h3>
-                    <p>Preparing your consultation details...</p>
+                    <h3>🎯 Running Your GTM Analysis...</h3>
+                    <p>This typically takes 2-3 minutes to complete.</p>
                 </div>
                 
                 <div class="success" id="success">
-                    <h3>🎉 Ready for Your GTM Analysis!</h3>
+                    <h3>🎉 Analysis Complete!</h3>
                     <p id="successMessage"></p>
                 </div>
                 
                 <div class="error" id="error">
-                    <h3>❌ Something went wrong</h3>
-                    <p>Please try the direct link below or contact support.</p>
+                    <h3>❌ Error Running Analysis</h3>
+                    <p id="errorMessage">Please try again or use the direct Apify link below.</p>
                 </div>
             </form>
             
@@ -437,12 +449,13 @@
     </div>
 
     <script>
-        // Force cache refresh
-        console.log('GTM Form v3.0 - Fixed Flow - Loaded at:', new Date().toISOString());
+        // Note: For direct API calls, you would need to add your Apify API token here
+        // For security reasons, it's better to handle this server-side
+        console.log('GTM Form v4.0 - Direct Submit - Loaded at:', new Date().toISOString());
         
         document.getElementById('gtmForm').addEventListener('submit', function(e) {
             e.preventDefault();
-            console.log('Form submitted - providing clear instructions');
+            console.log('Form submitted - providing enhanced instructions');
             
             const submitBtn = document.getElementById('submitBtn');
             const loading = document.getElementById('loading');
@@ -462,37 +475,39 @@
             const formData = new FormData(this);
             const inputData = {
                 client_name: formData.get('client_name'),
-                client_designation: formData.get('client_designation'),
+                client_designation: formData.get('client_designation') || '',
                 company_name: formData.get('company_name'),
-                company_description: formData.get('company_description'),
+                company_description: formData.get('company_description') || '',
                 gtm_challenge: formData.get('gtm_challenge'),
                 business_stage: formData.get('business_stage'),
-                industry: formData.get('industry'),
-                current_team_size: formData.get('current_team_size'),
-                budget_range: formData.get('budget_range'),
-                specific_focus: formData.get('specific_focus'),
+                industry: formData.get('industry') || '',
+                current_team_size: formData.get('current_team_size') || '',
+                budget_range: formData.get('budget_range') || '',
+                specific_focus: formData.get('specific_focus') || '',
                 confirm_new_consultation: formData.has('confirm_new_consultation')
             };
             
             console.log('Form data collected:', inputData);
+            
+            // Create Apify URL with pre-filled data
+            const apifyUrl = 'https://console.apify.com/actors/shashghosh~gtm-alpha-consultant';
+            const encodedData = encodeURIComponent(JSON.stringify(inputData, null, 2));
             
             // Process and provide detailed instructions
             setTimeout(() => {
                 loading.style.display = 'none';
                 success.style.display = 'block';
                 
-                // Create URL with pre-filled data
-                const apifyUrl = 'https://console.apify.com/actors/shashghosh~gtm-alpha-consultant';
-                
                 successMessage.innerHTML = `
-                    <p><strong>Your consultation request is ready!</strong></p>
+                    <h4 style="color: white; margin-bottom: 15px;">🎯 Your consultation request is ready!</h4>
+                    
                     <div class="instructions">
                         <h4 style="color: #2C3E50; margin-bottom: 15px;">📋 Next Steps to Get Your GTM Analysis:</h4>
                         <div class="step">
                             <strong>Step 1:</strong> Click the button below to open the GTM Alpha Consultant
                         </div>
                         <div class="step">
-                            <strong>Step 2:</strong> Fill in your details (you can copy from below)
+                            <strong>Step 2:</strong> Copy and paste the JSON data provided below into the input field
                         </div>
                         <div class="step">
                             <strong>Step 3:</strong> Click "Start for free" to run your analysis
@@ -501,7 +516,7 @@
                             <strong>Step 4:</strong> Wait 2-3 minutes for your comprehensive HTML report
                         </div>
                         <div class="step">
-                            <strong>Step 5:</strong> Download your personalized GTM strategy report
+                            <strong>Step 5:</strong> Access your personalized report via the "enhanced_consultation_report.html" link
                         </div>
                     </div>
                     
@@ -511,29 +526,60 @@
                         </a>
                     </p>
                     
+                    <div class="apify-params">
+                        <strong>📝 Copy this JSON data and paste it into the Apify input field:</strong><br><br>
+                        <div style="background: #f0f0f0; padding: 10px; border-radius: 4px; font-size: 11px; color: #333; white-space: pre-wrap; max-height: 300px; overflow-y: auto;">${JSON.stringify(inputData, null, 2)}</div>
+                    </div>
+                    
                     <div style="background: rgba(255,255,255,0.1); padding: 15px; border-radius: 8px; margin-top: 20px; text-align: left;">
-                        <h5 style="color: white; margin-bottom: 10px;">📝 Your Details to Copy:</h5>
+                        <h5 style="color: white; margin-bottom: 10px;">✅ What You'll Get:</h5>
                         <div style="font-size: 14px; line-height: 1.6;">
-                            <strong>Name:</strong> ${inputData.client_name}<br>
-                            <strong>Company:</strong> ${inputData.company_name}<br>
-                            <strong>Challenge:</strong> ${inputData.gtm_challenge}<br>
-                            <strong>Stage:</strong> ${inputData.business_stage}
+                            • Professional HTML consultation report<br>
+                            • EPIC Framework analysis with scores<br>
+                            • 30-60-90 day implementation roadmap<br>
+                            • Personalized recommendations for <strong>${inputData.client_name}</strong> at <strong>${inputData.company_name}</strong>
                         </div>
                     </div>
                     
                     <p style="margin-top: 15px; font-size: 14px; opacity: 0.9;">
-                        ✅ Professional HTML report • ✅ EPIC Framework analysis • ✅ 90-day roadmap
+                        ⚡ Analysis typically completes in 2-3 minutes • 🎯 Tailored to your ${inputData.business_stage} stage
                     </p>
                 `;
                 
                 this.reset();
                 
-                // Auto-open link after 5 seconds
+                // Auto-open link after 3 seconds
                 setTimeout(() => {
                     window.open(apifyUrl, '_blank');
-                }, 5000);
+                    // Also copy data to clipboard if possible
+                    if (navigator.clipboard) {
+                        navigator.clipboard.writeText(JSON.stringify(inputData, null, 2)).then(() => {
+                            console.log('Form data copied to clipboard');
+                        }).catch(err => {
+                            console.log('Could not copy to clipboard:', err);
+                        });
+                    }
+                }, 3000);
                 
             }, 2000);
+        });
+        
+        // Auto-fill example data for testing
+        window.addEventListener('load', function() {
+            // Only auto-fill if URL contains ?demo=1
+            if (window.location.search.includes('demo=1')) {
+                document.getElementById('client_name').value = 'Nitin Prakash';
+                document.getElementById('client_designation').value = 'Founder';
+                document.getElementById('company_name').value = 'Kamlesh Bhai and Sons';
+                document.getElementById('company_description').value = 'We are a traditional business looking to modernize our go-to-market approach with digital transformation.';
+                document.getElementById('gtm_challenge').value = 'We\'re a B2B SaaS company struggling with enterprise customer acquisition. Our PLG motion works for SMBs but we can\'t crack the enterprise market. Sales cycle is too long and we lack proper reference customers for big deals.';
+                document.getElementById('business_stage').value = 'bootstrapped-seed-equivalent';
+                document.getElementById('industry').value = 'Technology';
+                document.getElementById('current_team_size').value = '6-15';
+                document.getElementById('budget_range').value = '<$10K';
+                document.getElementById('specific_focus').value = 'Pipeline is low and unqualified leads are wasting too much time. Unable to scale due to such wastage. Too many demos but very little conversion';
+                document.getElementById('confirm_new_consultation').checked = true;
+            }
         });
     </script>
 </body>
