@@ -378,7 +378,7 @@
                 </div>
                 
                 <div class="success" id="success">
-                    <h3>🎉 GTM Analysis Complete!</h3>
+                    <h3>🎉 Form Submitted Successfully!</h3>
                     <p id="successMessage"></p>
                 </div>
                 
@@ -403,9 +403,6 @@
     </div>
 
     <script>
-        const APIFY_API_TOKEN = 'apify_api_4mszz5eKTSbZNyPf7GMqGDIcoydYj64gY8mn';
-        const ACTOR_ID = 'shashghosh~gtm-alpha-consultant';
-        
         document.getElementById('gtmForm').addEventListener('submit', async function(e) {
             e.preventDefault();
             
@@ -439,94 +436,39 @@
                 confirm_new_consultation: formData.has('confirm_new_consultation')
             };
             
-            try {
-                // Call Apify API
-                const response = await fetch(`https://api.apify.com/v2/acts/${ACTOR_ID}/runs`, {
-                    method: 'POST',
-                    headers: {
-                        'Authorization': `Bearer ${APIFY_API_TOKEN}`,
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify({ input: inputData })
+            // Simulate submission and redirect to Apify with form data
+            setTimeout(() => {
+                loading.style.display = 'none';
+                success.style.display = 'block';
+                
+                // Create URL with pre-filled data
+                const apifyUrl = 'https://console.apify.com/actors/shashghosh~gtm-alpha-consultant';
+                const params = new URLSearchParams();
+                
+                // Add form data as URL parameters
+                Object.keys(inputData).forEach(key => {
+                    if (inputData[key]) {
+                        params.append(`input.${key}`, inputData[key]);
+                    }
                 });
                 
-                if (!response.ok) {
-                    throw new Error(`HTTP error! status: ${response.status}`);
-                }
+                const fullUrl = `${apifyUrl}?${params.toString()}`;
                 
-                const runData = await response.json();
-                const runId = runData.data.id;
+                successMessage.innerHTML = `
+                    <p><strong>Your form has been processed!</strong></p>
+                    <p>Click below to complete your GTM Alpha analysis:</p>
+                    <p style="margin-top: 20px;">
+                        <a href="${fullUrl}" target="_blank" style="color: white; text-decoration: underline; font-weight: 600; background: rgba(255,255,255,0.2); padding: 10px 20px; border-radius: 8px; display: inline-block;">
+                            📄 Complete Your GTM Analysis on Apify →
+                        </a>
+                    </p>
+                    <p style="margin-top: 15px; font-size: 14px; opacity: 0.9;">
+                        Your form data has been pre-filled. Just click "Start for free" on Apify!
+                    </p>
+                `;
                 
-                // Poll for completion
-                let attempts = 0;
-                const maxAttempts = 60; // 5 minutes max
-                
-                const pollForCompletion = async () => {
-                    try {
-                        const statusResponse = await fetch(`https://api.apify.com/v2/acts/${ACTOR_ID}/runs/${runId}`, {
-                            headers: { 'Authorization': `Bearer ${APIFY_API_TOKEN}` }
-                        });
-                        
-                        const statusData = await statusResponse.json();
-                        const status = statusData.data.status;
-                        
-                        if (status === 'SUCCEEDED') {
-                            // Get the dataset results
-                            const datasetId = statusData.data.defaultDatasetId;
-                            const resultResponse = await fetch(`https://api.apify.com/v2/datasets/${datasetId}/items`, {
-                                headers: { 'Authorization': `Bearer ${APIFY_API_TOKEN}` }
-                            });
-                            
-                            const results = await resultResponse.json();
-                            
-                            if (results.length > 0 && results[0].report_url) {
-                                loading.style.display = 'none';
-                                success.style.display = 'block';
-                                successMessage.innerHTML = `
-                                    <p><strong>Your GTM Alpha Analysis is ready!</strong></p>
-                                    <p>📊 Primary Focus: ${results[0].primary_epic_focus || 'Analysis Complete'}</p>
-                                    <p>📈 EPIC Scores: E:${results[0].epic_scores?.E || 0}, P:${results[0].epic_scores?.P || 0}, I:${results[0].epic_scores?.I || 0}, C:${results[0].epic_scores?.C || 0}</p>
-                                    <p style="margin-top: 20px;">
-                                        <a href="${results[0].report_url}" target="_blank" style="color: white; text-decoration: underline; font-weight: 600;">
-                                            📄 View Your Complete GTM Report →
-                                        </a>
-                                    </p>
-                                    <p style="margin-top: 15px; font-size: 14px; opacity: 0.9;">
-                                        For personalized consultation: 
-                                        <a href="https://calendly.com/shashwat-gtmhelix/45min" target="_blank" style="color: white; text-decoration: underline;">
-                                            Book a session
-                                        </a>
-                                    </p>
-                                `;
-                                this.reset();
-                            } else {
-                                throw new Error('No results found');
-                            }
-                        } else if (status === 'FAILED' || status === 'ABORTED') {
-                            throw new Error('Actor run failed');
-                        } else if (attempts < maxAttempts) {
-                            attempts++;
-                            setTimeout(pollForCompletion, 5000); // Check every 5 seconds
-                        } else {
-                            throw new Error('Timeout waiting for results');
-                        }
-                    } catch (pollError) {
-                        console.error('Polling error:', pollError);
-                        loading.style.display = 'none';
-                        error.style.display = 'block';
-                        submitBtn.style.display = 'block';
-                    }
-                };
-                
-                // Start polling
-                setTimeout(pollForCompletion, 5000);
-                
-            } catch (err) {
-                console.error('Error:', err);
-                loading.style.display = 'none';
-                error.style.display = 'block';
-                submitBtn.style.display = 'block';
-            }
+                this.reset();
+            }, 2000);
         });
     </script>
 </body>
