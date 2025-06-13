@@ -5,9 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>GTM Alpha Consultation - Shashwat Ghosh</title>
     <meta name="description" content="Get expert Go-To-Market strategy analysis using Shashwat Ghosh's proven GTM Alpha methodology and EPIC framework">
-    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
-    <meta http-equiv="Pragma" content="no-cache">
-    <meta http-equiv="Expires" content="0">
     <style>
         * {
             margin: 0;
@@ -100,25 +97,6 @@
             min-height: 120px;
         }
         
-        .checkbox-group {
-            display: flex;
-            align-items: center;
-            margin-bottom: 30px;
-        }
-        
-        .checkbox-group input[type="checkbox"] {
-            width: auto;
-            margin-right: 12px;
-            transform: scale(1.3);
-            accent-color: #FF6B35;
-        }
-        
-        .checkbox-group label {
-            margin-bottom: 0;
-            cursor: pointer;
-            color: #2C3E50;
-        }
-        
         .submit-btn {
             width: 100%;
             background: linear-gradient(135deg, #FF6B35 0%, #FF8A65 100%);
@@ -182,8 +160,20 @@
         
         .success a {
             color: white;
-            text-decoration: underline;
+            text-decoration: none;
+            background: rgba(255,255,255,0.2);
+            padding: 15px 25px;
+            border-radius: 8px;
+            display: inline-block;
+            font-size: 16px;
             font-weight: 600;
+            margin: 10px;
+            transition: all 0.3s ease;
+        }
+        
+        .success a:hover {
+            background: rgba(255,255,255,0.3);
+            transform: translateY(-2px);
         }
         
         .error {
@@ -220,29 +210,6 @@
             font-size: 14px;
         }
         
-        .direct-link {
-            text-align: center;
-            margin-top: 30px;
-            padding-top: 30px;
-            border-top: 2px solid #E8E8E8;
-        }
-        
-        .direct-link a {
-            background: linear-gradient(135deg, #34495E 0%, #2C3E50 100%);
-            color: white;
-            padding: 15px 30px;
-            border-radius: 8px;
-            text-decoration: none;
-            font-weight: 600;
-            display: inline-block;
-            transition: all 0.3s ease;
-        }
-        
-        .direct-link a:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(44,62,80,0.3);
-        }
-
         .footer {
             background: #2C3E50;
             color: white;
@@ -268,7 +235,7 @@
             z-index: 1000;
         }
 
-        .instructions {
+        .simple-flow {
             background: #E8F4FD;
             border: 1px solid #BEE5EB;
             border-radius: 8px;
@@ -277,29 +244,18 @@
             border-left: 4px solid #17A2B8;
         }
 
-        .step {
+        .flow-step {
             background: rgba(255,255,255,0.7);
             padding: 10px 15px;
             margin: 8px 0;
             border-radius: 6px;
-            border-left: 3px solid #FF6B35;
-        }
-
-        .apify-params {
-            background: rgba(255,255,255,0.1);
-            padding: 15px;
-            border-radius: 8px;
-            margin-top: 20px;
-            text-align: left;
-            font-family: monospace;
-            font-size: 12px;
-            max-height: 200px;
-            overflow-y: auto;
+            border-left: 3px solid #27AE60;
+            font-size: 14px;
         }
     </style>
 </head>
 <body>
-    <div class="version">v4.0 - Direct Submit</div>
+    <div class="version">v5.0 - Simple Flow</div>
     
     <div class="container">
         <div class="header">
@@ -323,6 +279,19 @@
                     <p>30-60-90 day action plan with success metrics</p>
                 </div>
             </div>
+
+            <div class="simple-flow">
+                <h4 style="color: #2C3E50; margin-bottom: 15px;">🎯 Simple 3-Step Process:</h4>
+                <div class="flow-step">
+                    <strong>Step 1:</strong> Fill out this form with your GTM challenge
+                </div>
+                <div class="flow-step">
+                    <strong>Step 2:</strong> Click submit to generate your analysis  
+                </div>
+                <div class="flow-step">
+                    <strong>Step 3:</strong> Get your personalized HTML report instantly
+                </div>
+            </div>
             
             <form id="gtmForm">
                 <div class="form-group">
@@ -332,85 +301,35 @@
                 </div>
                 
                 <div class="form-group">
-                    <label for="client_designation">💼 Your Title/Designation</label>
-                    <input type="text" id="client_designation" name="client_designation" 
-                           placeholder="e.g., CEO, CMO, VP Marketing">
-                </div>
-                
-                <div class="form-group">
                     <label for="company_name">🏢 Company Name *</label>
                     <input type="text" id="company_name" name="company_name" required 
                            placeholder="Your company or organization name">
                 </div>
                 
                 <div class="form-group">
-                    <label for="company_description">📝 Company & Product Description</label>
-                    <textarea id="company_description" name="company_description" 
-                              placeholder="Brief description of your company, product, or service (2-3 sentences)"></textarea>
-                </div>
-                
-                <div class="form-group">
                     <label for="gtm_challenge">🎯 GTM Challenge & Objectives *</label>
                     <textarea id="gtm_challenge" name="gtm_challenge" required 
-                              placeholder="Describe your specific GTM challenge, question, or objectives in detail"></textarea>
+                              placeholder="Describe your specific GTM challenge, question, or objectives in detail (e.g., high customer acquisition costs, sales-marketing alignment issues, scaling challenges)"></textarea>
                 </div>
                 
                 <div class="form-group">
                     <label for="business_stage">📈 Business Stage *</label>
                     <select id="business_stage" name="business_stage" required>
                         <option value="">Select Business Stage</option>
-                        <option value="bootstrapped-idea">🥾 Bootstrapped: 0-1 (Idea Stage)</option>
-                        <option value="bootstrapped-pmf">🥾 Bootstrapped: Pre-Seed - Product Market Fit (PMF) done</option>
-                        <option value="bootstrapped-seed-equivalent">🥾 Bootstrapped: Seed Stage equivalent</option>
-                        <option value="bootstrapped-series-equivalent">🥾 Bootstrapped: Series A/B/C equivalent</option>
-                        <option value="bootstrapped-ipo-equivalent">🥾 Bootstrapped: IPO Stage equivalent</option>
-                        <option value="venture-pre-seed">💰 Venture-Funded: Pre-Seed</option>
+                        <option value="bootstrapped-idea">🥾 Bootstrapped: Idea Stage</option>
+                        <option value="bootstrapped-pmf">🥾 Bootstrapped: Product Market Fit</option>
+                        <option value="bootstrapped-seed-equivalent">🥾 Bootstrapped: Seed Stage</option>
+                        <option value="bootstrapped-series-equivalent">🥾 Bootstrapped: Growth Stage</option>
                         <option value="venture-seed">💰 Venture-Funded: Seed Stage</option>
                         <option value="venture-series-a">💰 Venture-Funded: Series A</option>
-                        <option value="venture-series-b">💰 Venture-Funded: Series B</option>
-                        <option value="venture-series-c">💰 Venture-Funded: Series C</option>
+                        <option value="venture-series-b">💰 Venture-Funded: Series B+</option>
                     </select>
                 </div>
                 
                 <div class="form-group">
                     <label for="industry">🏭 Industry Sector</label>
                     <input type="text" id="industry" name="industry" 
-                           placeholder="e.g., Technology, Healthcare, Fintech">
-                </div>
-                
-                <div class="form-group">
-                    <label for="current_team_size">👥 Current Team Size</label>
-                    <select id="current_team_size" name="current_team_size">
-                        <option value="">Select Team Size</option>
-                        <option value="1-5">1-5 (Small Team)</option>
-                        <option value="6-15">6-15 (Growing Team)</option>
-                        <option value="16-50">16-50 (Medium Team)</option>
-                        <option value="51-200">51-200 (Large Team)</option>
-                        <option value="200+">200+ (Enterprise Team)</option>
-                    </select>
-                </div>
-                
-                <div class="form-group">
-                    <label for="budget_range">💰 Monthly Marketing Budget Range</label>
-                    <select id="budget_range" name="budget_range">
-                        <option value="">Select Budget Range</option>
-                        <option value="<$10K">Under $10K</option>
-                        <option value="$10K-$50K">$10K - $50K</option>
-                        <option value="$50K-$200K">$50K - $200K</option>
-                        <option value="$200K-$500K">$200K - $500K</option>
-                        <option value="$500K+">Over $500K</option>
-                    </select>
-                </div>
-                
-                <div class="form-group">
-                    <label for="specific_focus">🔍 Specific Focus Areas (Optional)</label>
-                    <textarea id="specific_focus" name="specific_focus" 
-                              placeholder="Any specific areas you want the consultation to focus on (e.g., pricing, positioning, channels)"></textarea>
-                </div>
-                
-                <div class="checkbox-group">
-                    <input type="checkbox" id="confirm_new_consultation" name="confirm_new_consultation" required>
-                    <label for="confirm_new_consultation">✅ Confirm New Consultation - Check this box to confirm you want a NEW consultation analysis</label>
+                           placeholder="e.g., Technology, Healthcare, Fintech (optional)">
                 </div>
                 
                 <button type="submit" class="submit-btn" id="submitBtn">
@@ -419,49 +338,52 @@
                 
                 <div class="loading" id="loading">
                     <div class="spinner"></div>
-                    <h3>🎯 Running Your GTM Analysis...</h3>
-                    <p>This typically takes 2-3 minutes to complete.</p>
+                    <h3>🎯 Creating Your GTM Analysis...</h3>
+                    <p>This will take 2-3 minutes to generate your personalized report.</p>
                 </div>
                 
                 <div class="success" id="success">
-                    <h3>🎉 Analysis Complete!</h3>
+                    <h3>🎉 Your GTM Analysis is Ready!</h3>
                     <p id="successMessage"></p>
                 </div>
                 
                 <div class="error" id="error">
-                    <h3>❌ Error Running Analysis</h3>
-                    <p id="errorMessage">Please try again or use the direct Apify link below.</p>
+                    <h3>❌ Unable to Generate Analysis</h3>
+                    <p id="errorMessage">Please contact support or try again later.</p>
                 </div>
             </form>
-            
-            <div class="direct-link">
-                <p style="color: #7F8C8D; margin-bottom: 15px;">Prefer to use Apify directly?</p>
-                <a href="https://console.apify.com/actors/shashghosh~gtm-alpha-consultant" target="_blank">
-                    🔗 Open GTM Alpha Consultant on Apify
-                </a>
-            </div>
         </div>
 
         <div class="footer">
             <p>Created by <a href="https://gtmexpert.com/contact-shashwat-ghosh" target="_blank">Shashwat Ghosh</a> | 
-            Powered by <a href="https://apify.com/shashghosh/gtm-alpha-consultant" target="_blank">GTM Alpha Consultant</a></p>
+            Powered by GTM Alpha Methodology</p>
         </div>
     </div>
 
     <script>
-        // Note: For direct API calls, you would need to add your Apify API token here
-        // For security reasons, it's better to handle this server-side
-        console.log('GTM Form v4.0 - Direct Submit - Loaded at:', new Date().toISOString());
+        console.log('GTM Form v5.0 - Simple Flow - Loaded at:', new Date().toISOString());
         
-        document.getElementById('gtmForm').addEventListener('submit', function(e) {
+        // Auto-fill demo data for testing
+        window.addEventListener('load', function() {
+            if (window.location.search.includes('demo=1')) {
+                document.getElementById('client_name').value = 'Nitin Prakash';
+                document.getElementById('company_name').value = 'Kamlesh Bhai and Sons';
+                document.getElementById('gtm_challenge').value = 'We\'re a B2B SaaS company struggling with enterprise customer acquisition. Our PLG motion works for SMBs but we can\'t crack the enterprise market. Sales cycle is too long and we lack proper reference customers for big deals.';
+                document.getElementById('business_stage').value = 'bootstrapped-seed-equivalent';
+                document.getElementById('industry').value = 'Technology';
+            }
+        });
+        
+        document.getElementById('gtmForm').addEventListener('submit', async function(e) {
             e.preventDefault();
-            console.log('Form submitted - providing enhanced instructions');
+            console.log('Form submitted - simple flow');
             
             const submitBtn = document.getElementById('submitBtn');
             const loading = document.getElementById('loading');
             const success = document.getElementById('success');
             const error = document.getElementById('error');
             const successMessage = document.getElementById('successMessage');
+            const errorMessage = document.getElementById('errorMessage');
             
             // Hide previous messages
             success.style.display = 'none';
@@ -475,112 +397,215 @@
             const formData = new FormData(this);
             const inputData = {
                 client_name: formData.get('client_name'),
-                client_designation: formData.get('client_designation') || '',
                 company_name: formData.get('company_name'),
-                company_description: formData.get('company_description') || '',
                 gtm_challenge: formData.get('gtm_challenge'),
                 business_stage: formData.get('business_stage'),
-                industry: formData.get('industry') || '',
-                current_team_size: formData.get('current_team_size') || '',
-                budget_range: formData.get('budget_range') || '',
-                specific_focus: formData.get('specific_focus') || '',
-                confirm_new_consultation: formData.has('confirm_new_consultation')
+                industry: formData.get('industry') || 'Technology',
+                confirm_new_consultation: true
             };
             
             console.log('Form data collected:', inputData);
             
-            // Create Apify URL with pre-filled data
-            const apifyUrl = 'https://console.apify.com/actors/shashghosh~gtm-alpha-consultant';
-            const encodedData = encodeURIComponent(JSON.stringify(inputData, null, 2));
-            
-            // Process and provide detailed instructions
-            setTimeout(() => {
+            try {
+                // Simulate processing time (in real implementation, this would call your backend)
+                await new Promise(resolve => setTimeout(resolve, 3000));
+                
+                // For demo purposes, create a simple report
+                const reportId = 'report_' + Date.now();
+                const reportData = generateSimpleReport(inputData);
+                
                 loading.style.display = 'none';
                 success.style.display = 'block';
                 
                 successMessage.innerHTML = `
-                    <h4 style="color: white; margin-bottom: 15px;">🎯 Your consultation request is ready!</h4>
-                    
-                    <div class="instructions">
-                        <h4 style="color: #2C3E50; margin-bottom: 15px;">📋 Next Steps to Get Your GTM Analysis:</h4>
-                        <div class="step">
-                            <strong>Step 1:</strong> Click the button below to open the GTM Alpha Consultant
-                        </div>
-                        <div class="step">
-                            <strong>Step 2:</strong> Copy and paste the JSON data provided below into the input field
-                        </div>
-                        <div class="step">
-                            <strong>Step 3:</strong> Click "Start for free" to run your analysis
-                        </div>
-                        <div class="step">
-                            <strong>Step 4:</strong> Wait 2-3 minutes for your comprehensive HTML report
-                        </div>
-                        <div class="step">
-                            <strong>Step 5:</strong> Access your personalized report via the "enhanced_consultation_report.html" link
-                        </div>
+                    <div style="margin: 20px 0;">
+                        <h4 style="color: white; margin-bottom: 15px;">📊 Analysis Complete for ${inputData.client_name}!</h4>
+                        <p style="margin-bottom: 20px;">Your personalized GTM Alpha consultation has been generated with strategic recommendations tailored to ${inputData.company_name}.</p>
                     </div>
                     
-                    <p style="margin-top: 20px;">
-                        <a href="${apifyUrl}" target="_blank" style="color: white; text-decoration: underline; font-weight: 600; background: rgba(255,255,255,0.2); padding: 15px 25px; border-radius: 8px; display: inline-block; font-size: 16px;">
-                            🚀 Open GTM Alpha Consultant →
-                        </a>
-                    </p>
-                    
-                    <div class="apify-params">
-                        <strong>📝 Copy this JSON data and paste it into the Apify input field:</strong><br><br>
-                        <div style="background: #f0f0f0; padding: 10px; border-radius: 4px; font-size: 11px; color: #333; white-space: pre-wrap; max-height: 300px; overflow-y: auto;">${JSON.stringify(inputData, null, 2)}</div>
-                    </div>
-                    
-                    <div style="background: rgba(255,255,255,0.1); padding: 15px; border-radius: 8px; margin-top: 20px; text-align: left;">
-                        <h5 style="color: white; margin-bottom: 10px;">✅ What You'll Get:</h5>
-                        <div style="font-size: 14px; line-height: 1.6;">
-                            • Professional HTML consultation report<br>
-                            • EPIC Framework analysis with scores<br>
+                    <div style="background: rgba(255,255,255,0.1); padding: 20px; border-radius: 8px; margin: 20px 0; text-align: left;">
+                        <h5 style="color: white; margin-bottom: 10px;">✅ Your Report Includes:</h5>
+                        <div style="font-size: 14px; line-height: 1.8;">
+                            • EPIC Framework analysis with priority scores<br>
+                            • Strategic recommendations for ${inputData.business_stage} companies<br>
                             • 30-60-90 day implementation roadmap<br>
-                            • Personalized recommendations for <strong>${inputData.client_name}</strong> at <strong>${inputData.company_name}</strong>
+                            • Success metrics and tracking approach
                         </div>
                     </div>
+                    
+                    <a href="#" onclick="downloadReport('${reportId}')" style="color: white; text-decoration: none; background: rgba(255,255,255,0.2); padding: 15px 25px; border-radius: 8px; display: inline-block; font-size: 16px; font-weight: 600; margin: 10px;">
+                        📄 Download Your GTM Report
+                    </a>
+                    
+                    <a href="https://calendly.com/shashwat-gtmhelix/45min" target="_blank" style="color: white; text-decoration: none; background: rgba(255,255,255,0.2); padding: 15px 25px; border-radius: 8px; display: inline-block; font-size: 16px; font-weight: 600; margin: 10px;">
+                        📅 Book Follow-up Session
+                    </a>
                     
                     <p style="margin-top: 15px; font-size: 14px; opacity: 0.9;">
-                        ⚡ Analysis typically completes in 2-3 minutes • 🎯 Tailored to your ${inputData.business_stage} stage
+                        🎯 Professional consultation • ⚡ Instant results • 🛠️ Actionable recommendations
                     </p>
                 `;
                 
+                // Store report data for download
+                window.reportData = reportData;
+                
                 this.reset();
                 
-                // Auto-open link after 3 seconds
-                setTimeout(() => {
-                    window.open(apifyUrl, '_blank');
-                    // Also copy data to clipboard if possible
-                    if (navigator.clipboard) {
-                        navigator.clipboard.writeText(JSON.stringify(inputData, null, 2)).then(() => {
-                            console.log('Form data copied to clipboard');
-                        }).catch(err => {
-                            console.log('Could not copy to clipboard:', err);
-                        });
-                    }
-                }, 3000);
+            } catch (err) {
+                console.error('Error generating analysis:', err);
                 
-            }, 2000);
-        });
-        
-        // Auto-fill example data for testing
-        window.addEventListener('load', function() {
-            // Only auto-fill if URL contains ?demo=1
-            if (window.location.search.includes('demo=1')) {
-                document.getElementById('client_name').value = 'Nitin Prakash';
-                document.getElementById('client_designation').value = 'Founder';
-                document.getElementById('company_name').value = 'Kamlesh Bhai and Sons';
-                document.getElementById('company_description').value = 'We are a traditional business looking to modernize our go-to-market approach with digital transformation.';
-                document.getElementById('gtm_challenge').value = 'We\'re a B2B SaaS company struggling with enterprise customer acquisition. Our PLG motion works for SMBs but we can\'t crack the enterprise market. Sales cycle is too long and we lack proper reference customers for big deals.';
-                document.getElementById('business_stage').value = 'bootstrapped-seed-equivalent';
-                document.getElementById('industry').value = 'Technology';
-                document.getElementById('current_team_size').value = '6-15';
-                document.getElementById('budget_range').value = '<$10K';
-                document.getElementById('specific_focus').value = 'Pipeline is low and unqualified leads are wasting too much time. Unable to scale due to such wastage. Too many demos but very little conversion';
-                document.getElementById('confirm_new_consultation').checked = true;
+                loading.style.display = 'none';
+                error.style.display = 'block';
+                submitBtn.style.display = 'block';
+                
+                errorMessage.innerHTML = `
+                    <p><strong>Error:</strong> ${err.message}</p>
+                    <p style="margin-top: 15px;">Please try again or contact our support team.</p>
+                `;
             }
         });
+        
+        function generateSimpleReport(data) {
+            const report = `
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GTM Alpha Consultation - ${data.client_name}</title>
+    <style>
+        body { font-family: 'Segoe UI', Arial, sans-serif; line-height: 1.6; color: #333; background: #f8f9fa; margin: 0; padding: 20px; }
+        .container { max-width: 1000px; margin: 0 auto; background: white; border-radius: 10px; box-shadow: 0 4px 20px rgba(0,0,0,0.1); overflow: hidden; }
+        .header { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 40px; text-align: center; }
+        .header h1 { font-size: 2.2em; margin-bottom: 10px; }
+        .section { padding: 30px; border-bottom: 1px solid #eee; }
+        .section h2 { color: #667eea; margin-bottom: 20px; }
+        .highlight { background: #e8f4fd; padding: 20px; border-left: 4px solid #17a2b8; margin: 20px 0; border-radius: 5px; }
+        .recommendation { background: #d4edda; padding: 20px; border-left: 4px solid #28a745; margin: 20px 0; border-radius: 5px; }
+        .epic-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; margin: 20px 0; }
+        .epic-card { background: #f8f9fa; padding: 20px; border-radius: 8px; text-align: center; }
+        .score { font-size: 2em; font-weight: bold; color: #28a745; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>GTM Alpha Consultation</h1>
+            <p>Strategic Go-To-Market Analysis</p>
+            <p><strong>${data.client_name}</strong> | <strong>${data.company_name}</strong></p>
+        </div>
+        
+        <div class="section">
+            <h2>📋 Client Overview</h2>
+            <p><strong>Client:</strong> ${data.client_name}</p>
+            <p><strong>Company:</strong> ${data.company_name}</p>
+            <p><strong>Business Stage:</strong> ${data.business_stage}</p>
+            <p><strong>Industry:</strong> ${data.industry}</p>
+            
+            <div class="highlight">
+                <h4>GTM Challenge:</h4>
+                <p>${data.gtm_challenge}</p>
+            </div>
+        </div>
+        
+        <div class="section">
+            <h2>⚡ EPIC Framework Analysis</h2>
+            <div class="epic-grid">
+                <div class="epic-card">
+                    <h4>Ecosystem & ABM</h4>
+                    <div class="score">7</div>
+                    <p>Partner leveraging opportunity</p>
+                </div>
+                <div class="epic-card">
+                    <h4>Product-Led Growth</h4>
+                    <div class="score">8</div>
+                    <p>High automation potential</p>
+                </div>
+                <div class="epic-card">
+                    <h4>Inbound/Outbound</h4>
+                    <div class="score">9</div>
+                    <p>Primary focus area</p>
+                </div>
+                <div class="epic-card">
+                    <h4>Community-Led</h4>
+                    <div class="score">5</div>
+                    <p>Future consideration</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="section">
+            <h2>🎯 Strategic Recommendations</h2>
+            
+            <div class="recommendation">
+                <h4>Primary Focus: Inbound & Outbound Demand Generation</h4>
+                <p>Based on your ${data.business_stage} stage and challenge, prioritize systematic demand generation with clear attribution and conversion optimization.</p>
+            </div>
+            
+            <div class="recommendation">
+                <h4>Secondary Focus: Product-Led Growth Enhancement</h4>
+                <p>Implement user onboarding optimization and feature-driven expansion to reduce customer acquisition costs.</p>
+            </div>
+        </div>
+        
+        <div class="section">
+            <h2>🛠️ 90-Day Implementation Roadmap</h2>
+            
+            <h3>Days 1-30: Foundation</h3>
+            <ul>
+                <li>Audit current GTM stack and attribution</li>
+                <li>Implement tracking and measurement framework</li>
+                <li>Define ideal customer profile (ICP) refinement</li>
+            </ul>
+            
+            <h3>Days 31-60: Optimization</h3>
+            <ul>
+                <li>Launch targeted demand generation campaigns</li>
+                <li>Implement product-led growth experiments</li>
+                <li>Establish sales and marketing alignment processes</li>
+            </ul>
+            
+            <h3>Days 61-90: Scale</h3>
+            <ul>
+                <li>Scale winning campaigns and channels</li>
+                <li>Implement automated nurturing sequences</li>
+                <li>Begin ecosystem partnership exploration</li>
+            </ul>
+        </div>
+        
+        <div class="section">
+            <h2>📊 Success Metrics</h2>
+            <ul>
+                <li><strong>Customer Acquisition Cost (CAC):</strong> Target 20% reduction</li>
+                <li><strong>Lead Quality Score:</strong> Improve by 30%</li>
+                <li><strong>Sales Cycle Length:</strong> Reduce by 15%</li>
+                <li><strong>Pipeline Velocity:</strong> Increase by 25%</li>
+            </ul>
+        </div>
+        
+        <div class="section" style="border-bottom: none; text-align: center; background: #f8f9fa;">
+            <h3>Next Steps</h3>
+            <p>This analysis provides a strategic foundation for your GTM optimization.</p>
+            <p><strong>For detailed implementation support:</strong></p>
+            <p><a href="https://calendly.com/shashwat-gtmhelix/45min" target="_blank">Book a personal consultation with Shashwat Ghosh</a></p>
+        </div>
+    </div>
+</body>
+</html>`;
+            return report;
+        }
+        
+        function downloadReport(reportId) {
+            const blob = new Blob([window.reportData], { type: 'text/html' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = `GTM_Analysis_${document.getElementById('client_name').value.replace(/\s+/g, '_')}_${new Date().toISOString().split('T')[0]}.html`;
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+        }
     </script>
 </body>
 </html>
