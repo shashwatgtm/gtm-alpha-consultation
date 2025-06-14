@@ -46,10 +46,13 @@
         .api-status.error { background: #f8d7da; color: #721c24; }
         .progress-bar { width: 100%; height: 6px; background: #f3f3f3; border-radius: 3px; overflow: hidden; margin: 15px 0; }
         .progress-fill { height: 100%; background: linear-gradient(90deg, #FF6B35, #FF8A65); transition: width 0.3s ease; }
+        .deploy-notice { background: #e3f2fd; border: 2px solid #2196f3; border-radius: 10px; padding: 20px; margin: 20px 0; text-align: center; }
+        .deploy-button { background: #6f42c1; color: white; padding: 15px 30px; border: none; border-radius: 8px; font-size: 16px; font-weight: 600; text-decoration: none; display: inline-block; margin: 10px; transition: all 0.3s ease; }
+        .deploy-button:hover { background: #5a32a3; transform: translateY(-2px); }
     </style>
 </head>
 <body>
-    <div class="version">v6.0 - Backend Ready</div>
+    <div class="version">v7.0 - Heroku Ready</div>
     
     <div class="container">
         <div class="header">
@@ -59,6 +62,19 @@
         </div>
         
         <div class="form-container">
+            <!-- Deployment Notice -->
+            <div class="deploy-notice">
+                <h3>🚀 Ready for Deployment!</h3>
+                <p>Backend service is configured for Heroku. Click the button below to deploy:</p>
+                <a href="https://heroku.com/deploy?template=https://github.com/shashwatgtm/gtm-alpha-backend" 
+                   class="deploy-button" target="_blank">
+                   Deploy to Heroku
+                </a>
+                <p style="font-size: 14px; margin-top: 10px; color: #666;">
+                    After deployment, the form will automatically connect to your backend service.
+                </p>
+            </div>
+
             <!-- API Status Check -->
             <div id="apiStatus" class="api-status checking">
                 🔍 Connecting to backend service...
@@ -201,10 +217,10 @@
     </div>
 
     <script>
-        // IMPORTANT: Update this URL after deploying your backend
-        const BACKEND_URL = 'https://gtm-alpha-backend-production.up.railway.app'; // Update with your deployed backend URL
+        // PRODUCTION BACKEND URL - Heroku deployment
+        const BACKEND_URL = 'https://gtm-alpha-backend.herokuapp.com';
         
-        console.log('GTM Form v6.0 - Backend Integration - Loaded at:', new Date().toISOString());
+        console.log('GTM Form v7.0 - Heroku Ready - Loaded at:', new Date().toISOString());
         
         // Check backend connection on load
         window.addEventListener('load', async function() {
@@ -240,13 +256,19 @@
                     statusEl.className = 'api-status connected';
                     statusEl.innerHTML = '✅ Backend connected - Ready for GTM consultations';
                     console.log('Backend health check passed:', data);
+                    
+                    // Hide deploy notice if backend is connected
+                    const deployNotice = document.querySelector('.deploy-notice');
+                    if (deployNotice) {
+                        deployNotice.style.display = 'none';
+                    }
                 } else {
                     throw new Error(`Backend responded with ${response.status}`);
                 }
             } catch (error) {
                 console.error('Backend health check failed:', error);
                 statusEl.className = 'api-status error';
-                statusEl.innerHTML = '❌ Backend not available - Deploy the backend service first';
+                statusEl.innerHTML = '❌ Backend not deployed yet - Click "Deploy to Heroku" button above';
             }
         }
         
@@ -378,13 +400,14 @@
                     // Instructions for backend deployment
                     errorMessage.innerHTML = `
                         <p><strong>Backend Service Required</strong></p>
-                        <p>To enable direct consultations, deploy the backend service:</p>
+                        <p>Deploy the backend service using the "Deploy to Heroku" button above.</p>
                         <div style="background: rgba(255,255,255,0.1); padding: 15px; border-radius: 8px; margin: 15px 0; text-align: left;">
-                            <strong>Quick Deploy:</strong><br>
-                            1. Go to <a href="https://github.com/shashwatgtm/gtm-alpha-backend" target="_blank" style="color: white;">GitHub Backend Repo</a><br>
-                            2. Deploy to Railway/Heroku<br>
-                            3. Set APIFY_API_TOKEN environment variable<br>
-                            4. Update BACKEND_URL in this form<br><br>
+                            <strong>Quick Deploy Steps:</strong><br>
+                            1. Click "Deploy to Heroku" button above<br>
+                            2. Create Heroku account if needed<br>
+                            3. Click "Deploy app"<br>
+                            4. Wait for deployment to complete<br>
+                            5. Try submitting the form again<br><br>
                             <strong>Manual fallback:</strong> <a href="https://console.apify.com/actors/shashghosh~gtm-alpha-consultant" target="_blank" style="color: white;">Use Apify Console</a>
                         </div>
                     `;
