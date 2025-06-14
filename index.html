@@ -46,13 +46,10 @@
         .api-status.error { background: #f8d7da; color: #721c24; }
         .progress-bar { width: 100%; height: 6px; background: #f3f3f3; border-radius: 3px; overflow: hidden; margin: 15px 0; }
         .progress-fill { height: 100%; background: linear-gradient(90deg, #FF6B35, #FF8A65); transition: width 0.3s ease; }
-        .deploy-notice { background: #e3f2fd; border: 2px solid #2196f3; border-radius: 10px; padding: 20px; margin: 20px 0; text-align: center; }
-        .deploy-button { background: #6f42c1; color: white; padding: 15px 30px; border: none; border-radius: 8px; font-size: 16px; font-weight: 600; text-decoration: none; display: inline-block; margin: 10px; transition: all 0.3s ease; }
-        .deploy-button:hover { background: #5a32a3; transform: translateY(-2px); }
     </style>
 </head>
 <body>
-    <div class="version">v7.0 - Heroku Ready</div>
+    <div class="version">v8.0 - Railway Live!</div>
     
     <div class="container">
         <div class="header">
@@ -62,19 +59,6 @@
         </div>
         
         <div class="form-container">
-            <!-- Deployment Notice -->
-            <div class="deploy-notice">
-                <h3>🚀 Ready for Deployment!</h3>
-                <p>Backend service is configured for Heroku. Click the button below to deploy:</p>
-                <a href="https://heroku.com/deploy?template=https://github.com/shashwatgtm/gtm-alpha-backend" 
-                   class="deploy-button" target="_blank">
-                   Deploy to Heroku
-                </a>
-                <p style="font-size: 14px; margin-top: 10px; color: #666;">
-                    After deployment, the form will automatically connect to your backend service.
-                </p>
-            </div>
-
             <!-- API Status Check -->
             <div id="apiStatus" class="api-status checking">
                 🔍 Connecting to backend service...
@@ -217,10 +201,10 @@
     </div>
 
     <script>
-        // PRODUCTION BACKEND URL - Heroku deployment
-        const BACKEND_URL = 'https://gtm-alpha-backend.herokuapp.com';
+        // PRODUCTION BACKEND URL - Railway deployment
+        const BACKEND_URL = 'https://web-production-0616.up.railway.app';
         
-        console.log('GTM Form v7.0 - Heroku Ready - Loaded at:', new Date().toISOString());
+        console.log('GTM Form v8.0 - Railway Live - Loaded at:', new Date().toISOString());
         
         // Check backend connection on load
         window.addEventListener('load', async function() {
@@ -256,25 +240,19 @@
                     statusEl.className = 'api-status connected';
                     statusEl.innerHTML = '✅ Backend connected - Ready for GTM consultations';
                     console.log('Backend health check passed:', data);
-                    
-                    // Hide deploy notice if backend is connected
-                    const deployNotice = document.querySelector('.deploy-notice');
-                    if (deployNotice) {
-                        deployNotice.style.display = 'none';
-                    }
                 } else {
                     throw new Error(`Backend responded with ${response.status}`);
                 }
             } catch (error) {
                 console.error('Backend health check failed:', error);
                 statusEl.className = 'api-status error';
-                statusEl.innerHTML = '❌ Backend not deployed yet - Click "Deploy to Heroku" button above';
+                statusEl.innerHTML = '❌ Backend connecting... Railway deployment may still be in progress';
             }
         }
         
         document.getElementById('gtmForm').addEventListener('submit', async function(e) {
             e.preventDefault();
-            console.log('Form submitted - calling backend service');
+            console.log('Form submitted - calling Railway backend service');
             
             const submitBtn = document.getElementById('submitBtn');
             const loading = document.getElementById('loading');
@@ -308,10 +286,10 @@
                 confirm_new_consultation: formData.has('confirm_new_consultation')
             };
             
-            console.log('Sending GTM consultation request:', inputData);
+            console.log('Sending GTM consultation request to Railway:', inputData);
             
             try {
-                // Call backend API
+                // Call Railway backend API
                 const response = await fetch(`${BACKEND_URL}/api/gtm-consultation`, {
                     method: 'POST',
                     headers: {
@@ -322,12 +300,14 @@
                 });
                 
                 const result = await response.json();
-                console.log('Backend response:', result);
+                console.log('Railway backend response:', result);
                 
                 if (response.ok && result.success) {
                     // Success!
                     loading.style.display = 'none';
                     success.style.display = 'block';
+                    
+                    const data = result.data || result;
                     
                     successMessage.innerHTML = `
                         <div style="margin: 20px 0;">
@@ -338,22 +318,24 @@
                         <div style="background: rgba(255,255,255,0.1); padding: 20px; border-radius: 8px; margin: 20px 0; text-align: left;">
                             <h5 style="color: white; margin-bottom: 10px;">📊 Consultation Results:</h5>
                             <div style="font-size: 14px; line-height: 1.8;">
-                                <strong>Run ID:</strong> ${result.runId}<br>
-                                <strong>Status:</strong> ${result.status}<br>
-                                <strong>Duration:</strong> ${Math.round(result.duration / 1000)} seconds<br>
-                                <strong>Generated:</strong> ${new Date(result.timestamp).toLocaleString()}
+                                <strong>Run ID:</strong> ${data.runId}<br>
+                                <strong>Status:</strong> ${data.status}<br>
+                                ${data.duration ? `<strong>Duration:</strong> ${Math.round(data.duration / 1000)} seconds<br>` : ''}
+                                <strong>Generated:</strong> ${new Date().toLocaleString()}
                             </div>
                         </div>
                         
                         <div style="margin: 20px 0;">
-                            ${result.reportUrl ? `
-                                <a href="${result.reportUrl}" target="_blank" style="color: white; text-decoration: none; background: rgba(255,255,255,0.2); padding: 15px 25px; border-radius: 8px; display: inline-block; font-size: 16px; font-weight: 600; margin: 5px;">
-                                    📄 View HTML Report →
+                            ${data.consoleUrl ? `
+                                <a href="${data.consoleUrl}" target="_blank" style="color: white; text-decoration: none; background: rgba(255,255,255,0.2); padding: 15px 25px; border-radius: 8px; display: inline-block; font-size: 16px; font-weight: 600; margin: 5px;">
+                                    🔧 View Run Details →
                                 </a>
                             ` : ''}
-                            <a href="${result.consoleUrl}" target="_blank" style="color: white; text-decoration: none; background: rgba(255,255,255,0.2); padding: 15px 25px; border-radius: 8px; display: inline-block; font-size: 16px; font-weight: 600; margin: 5px;">
-                                🔧 View Run Details →
-                            </a>
+                            ${data.datasetUrl ? `
+                                <a href="${data.datasetUrl}" target="_blank" style="color: white; text-decoration: none; background: rgba(255,255,255,0.2); padding: 15px 25px; border-radius: 8px; display: inline-block; font-size: 16px; font-weight: 600; margin: 5px;">
+                                    📄 View Results →
+                                </a>
+                            ` : ''}
                             <a href="https://calendly.com/shashwat-gtmhelix/45min" target="_blank" style="color: white; text-decoration: none; background: rgba(255,255,255,0.2); padding: 15px 25px; border-radius: 8px; display: inline-block; font-size: 16px; font-weight: 600; margin: 5px;">
                                 📅 Book Follow-up →
                             </a>
@@ -365,9 +347,9 @@
                     `;
                     
                     // Auto-open report if available
-                    if (result.reportUrl) {
+                    if (data.consoleUrl) {
                         setTimeout(() => {
-                            window.open(result.reportUrl, '_blank');
+                            window.open(data.consoleUrl, '_blank');
                         }, 2000);
                     }
                     
@@ -379,7 +361,7 @@
                 this.reset();
                 
             } catch (err) {
-                console.error('Error calling backend:', err);
+                console.error('Error calling Railway backend:', err);
                 
                 loading.style.display = 'none';
                 error.style.display = 'block';
@@ -397,18 +379,14 @@
                         </p>
                     `;
                 } else if (err.message.includes('Failed to fetch') || err.message.includes('Backend not available')) {
-                    // Instructions for backend deployment
                     errorMessage.innerHTML = `
-                        <p><strong>Backend Service Required</strong></p>
-                        <p>Deploy the backend service using the "Deploy to Heroku" button above.</p>
+                        <p><strong>Backend Service Connecting</strong></p>
+                        <p>Railway deployment may still be in progress. Please wait a few moments and try again.</p>
                         <div style="background: rgba(255,255,255,0.1); padding: 15px; border-radius: 8px; margin: 15px 0; text-align: left;">
-                            <strong>Quick Deploy Steps:</strong><br>
-                            1. Click "Deploy to Heroku" button above<br>
-                            2. Create Heroku account if needed<br>
-                            3. Click "Deploy app"<br>
-                            4. Wait for deployment to complete<br>
-                            5. Try submitting the form again<br><br>
-                            <strong>Manual fallback:</strong> <a href="https://console.apify.com/actors/shashghosh~gtm-alpha-consultant" target="_blank" style="color: white;">Use Apify Console</a>
+                            <strong>Status:</strong> Railway deployment detected<br>
+                            <strong>Backend URL:</strong> ${BACKEND_URL}<br>
+                            <strong>Try again in:</strong> 2-3 minutes<br><br>
+                            <strong>Alternative:</strong> <a href="https://console.apify.com/actors/shashghosh~gtm-alpha-consultant" target="_blank" style="color: white;">Use Apify Console</a>
                         </div>
                     `;
                 } else {
@@ -427,12 +405,12 @@
             
             let progress = 0;
             const steps = [
-                { progress: 10, text: 'Validating consultation data...', title: '🔍 Validating Your Request...' },
-                { progress: 25, text: 'Calling GTM Alpha Consultant...', title: '🚀 Starting GTM Analysis...' },
+                { progress: 10, text: 'Connecting to Railway backend...', title: '🚀 Connecting to Backend...' },
+                { progress: 25, text: 'Calling GTM Alpha Consultant...', title: '🎯 Starting GTM Analysis...' },
                 { progress: 40, text: 'Running EPIC Framework analysis...', title: '⚡ Analyzing EPIC Framework...' },
-                { progress: 60, text: 'Generating strategic recommendations...', title: '🎯 Creating Recommendations...' },
+                { progress: 60, text: 'Generating strategic recommendations...', title: '🧠 Creating Recommendations...' },
                 { progress: 80, text: 'Building implementation roadmap...', title: '🛠️ Building Roadmap...' },
-                { progress: 95, text: 'Finalizing HTML report...', title: '📄 Generating Report...' }
+                { progress: 95, text: 'Finalizing consultation report...', title: '📄 Generating Report...' }
             ];
             
             let currentStep = 0;
@@ -449,7 +427,7 @@
                     progressText.textContent = 'Almost done...';
                     clearInterval(interval);
                 }
-            }, 20000); // 20 seconds per step, total ~2.5 minutes
+            }, 25000); // 25 seconds per step, total ~2.5 minutes
         }
     </script>
 </body>
