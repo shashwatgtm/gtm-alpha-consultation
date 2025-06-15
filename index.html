@@ -3,432 +3,796 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GTM Alpha Consultation - Shashwat Ghosh</title>
-    <meta name="description" content="Get expert Go-To-Market strategy analysis using Shashwat Ghosh's proven GTM Alpha methodology and EPIC framework">
+    <title>GTM Alpha Consultation</title>
+    
+    <meta name="description" content="Get expert Go-To-Market strategy using Shashwat Ghosh's proven methodology">
+    <meta name="keywords" content="GTM strategy, go-to-market, business consulting, startup strategy, EPIC framework">
+    
     <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: 'Segoe UI', Arial, sans-serif; background: linear-gradient(135deg, #FF6B35 0%, #FF8A65 100%); min-height: 100vh; padding: 20px; }
-        .container { max-width: 800px; margin: 0 auto; background: white; border-radius: 20px; box-shadow: 0 20px 40px rgba(255,107,53,0.2); overflow: hidden; }
-        .header { background: linear-gradient(135deg, #2C3E50 0%, #34495E 100%); color: white; padding: 40px; text-align: center; }
-        .header h1 { font-size: 2.5rem; margin-bottom: 10px; }
-        .header p { font-size: 1.2rem; opacity: 0.9; margin-bottom: 20px; }
-        .badge { background: #FF6B35; color: white; padding: 8px 20px; border-radius: 25px; font-size: 14px; font-weight: 600; display: inline-block; }
-        .form-container { padding: 40px; }
-        .form-group { margin-bottom: 25px; }
-        .form-group label { display: block; margin-bottom: 8px; color: #2C3E50; font-weight: 600; font-size: 16px; }
-        .form-group input, .form-group textarea, .form-group select { width: 100%; padding: 15px; border: 2px solid #E8E8E8; border-radius: 10px; font-size: 16px; transition: all 0.3s ease; font-family: inherit; }
-        .form-group input:focus, .form-group textarea:focus, .form-group select:focus { outline: none; border-color: #FF6B35; box-shadow: 0 0 0 3px rgba(255,107,53,0.1); }
-        .form-group textarea { resize: vertical; min-height: 120px; }
-        .checkbox-group { display: flex; align-items: center; margin-bottom: 30px; }
-        .checkbox-group input[type="checkbox"] { width: auto; margin-right: 12px; transform: scale(1.3); accent-color: #FF6B35; }
-        .checkbox-group label { margin-bottom: 0; cursor: pointer; color: #2C3E50; }
-        .submit-btn { width: 100%; background: linear-gradient(135deg, #FF6B35 0%, #FF8A65 100%); color: white; padding: 20px; border: none; border-radius: 12px; font-size: 18px; font-weight: 600; cursor: pointer; transition: all 0.3s ease; box-shadow: 0 5px 20px rgba(255,107,53,0.3); }
-        .submit-btn:hover { transform: translateY(-3px); box-shadow: 0 8px 25px rgba(255,107,53,0.4); }
-        .submit-btn:disabled { opacity: 0.7; cursor: not-allowed; transform: none; }
-        .loading { display: none; text-align: center; margin-top: 30px; }
-        .spinner { border: 4px solid #f3f3f3; border-top: 4px solid #FF6B35; border-radius: 50%; width: 50px; height: 50px; animation: spin 1s linear infinite; margin: 0 auto 20px; }
-        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
-        .success { display: none; background: linear-gradient(135deg, #27AE60 0%, #2ECC71 100%); color: white; padding: 30px; border-radius: 15px; margin-top: 30px; text-align: center; }
-        .success h3 { margin-bottom: 15px; font-size: 1.5rem; }
-        .success a { color: white; text-decoration: none; background: rgba(255,255,255,0.2); padding: 15px 25px; border-radius: 8px; display: inline-block; font-size: 16px; font-weight: 600; margin: 10px; transition: all 0.3s ease; }
-        .success a:hover { background: rgba(255,255,255,0.3); transform: translateY(-2px); }
-        .error { display: none; background: linear-gradient(135deg, #E74C3C 0%, #C0392B 100%); color: white; padding: 30px; border-radius: 15px; margin-top: 30px; text-align: center; }
-        .features { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; margin-bottom: 30px; }
-        .feature { background: #F8F9FA; padding: 20px; border-radius: 12px; text-align: center; }
-        .feature h4 { color: #2C3E50; margin-bottom: 10px; }
-        .feature p { color: #7F8C8D; font-size: 14px; }
-        .footer { background: #2C3E50; color: white; padding: 20px; text-align: center; font-size: 14px; }
-        .footer a { color: #FF6B35; text-decoration: none; }
-        .version { position: fixed; top: 10px; right: 10px; background: #28a745; color: white; padding: 5px 10px; border-radius: 5px; font-size: 12px; z-index: 1000; }
-        .api-status { margin: 20px 0; padding: 15px; border-radius: 8px; text-align: center; font-size: 14px; }
-        .api-status.checking { background: #fff3cd; color: #856404; }
-        .api-status.connected { background: #d4edda; color: #155724; }
-        .api-status.error { background: #f8d7da; color: #721c24; }
-        .progress-bar { width: 100%; height: 6px; background: #f3f3f3; border-radius: 3px; overflow: hidden; margin: 15px 0; }
-        .progress-fill { height: 100%; background: linear-gradient(90deg, #FF6B35, #FF8A65); transition: width 0.3s ease; }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --orange-alpha: #ff6b47;
+            --dark-navy: #34495e;
+            --light-gray: #f8f9fa;
+            --green-security: #d4edda;
+            --green-border: #c3e6cb;
+            --green-text: #155724;
+            --text-primary: #000000;
+            --text-secondary: #000000;
+            --border: #dee2e6;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+            line-height: 1.6;
+            color: var(--text-primary);
+            background-color: var(--light-gray);
+            margin: 0;
+        }
+
+        /* Header */
+        .header {
+            background-color: var(--dark-navy);
+            padding: 16px 0;
+            color: white;
+        }
+
+        .header-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo-section {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .logo-text {
+            font-size: 2rem;
+            font-weight: 900;
+            color: white;
+            letter-spacing: -2px;
+            font-family: system-ui, sans-serif;
+        }
+
+        .logo-alpha {
+            width: 50px;
+            height: 50px;
+            background-color: #ff6b47;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            font-weight: 400;
+            color: white;
+            font-family: Georgia, serif;
+            font-style: italic;
+        }
+
+        .header-content {
+            text-align: center;
+            flex: 1;
+        }
+
+        .header-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+
+        .tagline {
+            font-size: 1rem;
+            color: #bdc3c7;
+            font-weight: 400;
+        }
+
+        .free-analysis-btn {
+            background-color: var(--orange-alpha);
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 6px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .free-analysis-btn:hover {
+            background-color: #e55a3c;
+        }
+
+        /* Main Content */
+        .main-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 48px 24px;
+        }
+
+        .main-title {
+            text-align: center;
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 24px;
+        }
+
+        .main-subtitle {
+            text-align: center;
+            font-size: 1.25rem;
+            color: var(--text-secondary);
+            margin-bottom: 16px;
+        }
+
+        .main-description {
+            text-align: center;
+            font-size: 1.125rem;
+            color: var(--text-secondary);
+            margin-bottom: 48px;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* Feature Boxes */
+        .features {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+            margin-bottom: 48px;
+        }
+
+        .feature-box {
+            background: white;
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 32px 24px;
+            text-align: center;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .feature-icon {
+            width: 64px;
+            height: 64px;
+            margin: 0 auto 16px;
+            background-color: var(--light-gray);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .feature-title {
+            font-size: 1.125rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 8px;
+        }
+
+        .feature-description {
+            font-size: 0.875rem;
+            color: var(--text-secondary);
+            line-height: 1.5;
+        }
+
+        /* Form Section */
+        .form-container {
+            background: white;
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 32px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        .form-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 8px;
+        }
+
+        .form-subtitle {
+            font-size: 1rem;
+            color: var(--text-secondary);
+            margin-bottom: 24px;
+        }
+
+        .security-notice {
+            background-color: var(--green-security);
+            border: 1px solid var(--green-border);
+            color: var(--green-text);
+            padding: 12px 16px;
+            border-radius: 6px;
+            margin-bottom: 24px;
+            font-size: 0.875rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+            margin-bottom: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 0.875rem;
+            font-weight: 500;
+            color: var(--text-primary);
+            margin-bottom: 6px;
+        }
+
+        .required {
+            color: #dc3545;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 12px 16px;
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            font-size: 1rem;
+            font-family: inherit;
+            background-color: white;
+            transition: border-color 0.2s ease;
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: #007bff;
+            box-shadow: 0 0 0 2px rgba(0,123,255,0.25);
+        }
+
+        textarea.form-control {
+            resize: vertical;
+            min-height: 100px;
+        }
+
+        .checkbox-group {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 24px;
+        }
+
+        .checkbox-group input[type="checkbox"] {
+            width: auto;
+        }
+
+        .submit-btn {
+            background-color: var(--dark-navy);
+            color: white;
+            border: none;
+            padding: 16px 32px;
+            border-radius: 6px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            width: 100%;
+            transition: background-color 0.2s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .submit-btn:hover:not(:disabled) {
+            background-color: #1a252f;
+        }
+
+        .submit-btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
+
+        .loading-spinner {
+            width: 16px;
+            height: 16px;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            border-top-color: white;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        /* Status Messages */
+        .status-message {
+            margin-top: 16px;
+            padding: 16px;
+            border-radius: 6px;
+            font-size: 0.875rem;
+        }
+
+        .status-success {
+            background-color: #d4edda;
+            border: 1px solid #c3e6cb;
+            color: #155724;
+        }
+
+        .status-error {
+            background-color: #f8d7da;
+            border: 1px solid #f5c6cb;
+            color: #721c24;
+        }
+
+        .status-loading {
+            background-color: #d1ecf1;
+            border: 1px solid #bee5eb;
+            color: #0c5460;
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 4px;
+            background-color: #e9ecef;
+            border-radius: 2px;
+            overflow: hidden;
+            margin-top: 16px;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background-color: var(--orange-alpha);
+            width: 0%;
+            transition: width 0.3s ease;
+        }
+
+        /* Footer */
+        .footer {
+            background-color: var(--dark-navy);
+            color: white;
+            padding: 48px 0 24px;
+        }
+
+        .footer-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        .footer-title {
+            text-align: center;
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 32px;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+            margin-bottom: 32px;
+        }
+
+        .service-box {
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            padding: 24px;
+            text-align: center;
+        }
+
+        .service-title {
+            font-size: 1.125rem;
+            font-weight: 600;
+            margin-bottom: 12px;
+            color: white;
+        }
+
+        .service-description {
+            font-size: 0.875rem;
+            color: #bdc3c7;
+            line-height: 1.5;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 24px;
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
+            color: #bdc3c7;
+            font-size: 0.875rem;
+        }
+
+        .footer-bottom a {
+            color: var(--orange-alpha);
+            text-decoration: none;
+        }
+
+        .footer-bottom a:hover {
+            text-decoration: underline;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .header-container {
+                flex-direction: column;
+                gap: 16px;
+                text-align: center;
+            }
+
+            .main-title {
+                font-size: 2rem;
+            }
+
+            .features {
+                grid-template-columns: 1fr;
+            }
+
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .main-container {
+                padding: 24px 16px;
+            }
+
+            .form-container {
+                padding: 24px;
+            }
+        }
+
+        .demo-notice {
+            background-color: #fff3cd;
+            border: 1px solid #ffeaa7;
+            color: #856404;
+            padding: 12px 16px;
+            border-radius: 6px;
+            margin-bottom: 24px;
+            font-size: 0.875rem;
+            text-align: center;
+        }
     </style>
 </head>
 <body>
-    <div class="version">v8.0 - Railway Live!</div>
-    
-    <div class="container">
-        <div class="header">
-            <h1>🎯 GTM Alpha Consultation</h1>
-            <p>Get expert Go-To-Market strategy using Shashwat Ghosh's proven methodology</p>
-            <div class="badge">✅ FREE Analysis</div>
+    <!-- Header -->
+    <div class="header">
+        <div class="header-container">
+            <div class="logo">
+                <span class="logo-text">GTM</span>
+                <div class="logo-alpha">α</div>
+            </div>
+            <div class="header-content">
+                <div class="header-title">GTM Alpha Consultation</div>
+                <div class="tagline">Get expert Go-To-Market strategy using Shashwat Ghosh's proven methodology</div>
+            </div>
+            <a href="#form" class="free-analysis-btn">FREE Analysis</a>
         </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="main-container">
+        <h1 class="main-title">GTM Alpha Consulting with the EPIC Framework</h1>
         
-        <div class="form-container">
-            <!-- API Status Check -->
-            <div id="apiStatus" class="api-status checking">
-                🔍 Connecting to backend service...
+        <h2 class="main-subtitle">Is your GTM strategy firing on all cylinders?</h2>
+        
+        <p class="main-description">
+            Are you struggling with low top-of-funnel (TOFU) qualified leads, inefficient marketing processes, or long sales cycles?
+        </p>
+        
+        <p class="main-description">
+            Our GTM Alpha Consulting service, powered by Shashwat Ghosh's proprietary EPIC framework, provides a comprehensive audit and a strategic roadmap to optimize your market approach.
+        </p>
+
+        <!-- Feature Boxes -->
+        <div class="features">
+            <div class="feature-box">
+                <div class="feature-icon">
+                    <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
+                        <circle cx="16" cy="16" r="14" stroke="#34495e" stroke-width="2" fill="none"/>
+                        <circle cx="16" cy="16" r="8" stroke="#34495e" stroke-width="2" fill="none"/>
+                        <circle cx="16" cy="16" r="3" fill="#34495e"/>
+                    </svg>
+                </div>
+                <div class="feature-title">GTM Alpha Methodology</div>
+                <div class="feature-description">Dynamic operating system approach, not static planning</div>
+            </div>
+            <div class="feature-box">
+                <div class="feature-icon">
+                    <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
+                        <path d="M16 4C19.866 4 23 7.134 23 11C23 12.5 22.5 13.866 21.634 14.946L21 16H19L18.5 17H17.5L17 18H15L14 19H12V21H10V23H8V25H26V23C26 13.059 18.5 4 16 4Z" stroke="#34495e" stroke-width="2" fill="none"/>
+                        <rect x="12" y="25" width="8" height="3" stroke="#34495e" stroke-width="2" fill="none"/>
+                    </svg>
+                </div>
+                <div class="feature-title">EPIC Framework</div>
+                <div class="feature-description">Ecosystem, Product-led, Inbound/Outbound, Community analysis</div>
+            </div>
+            <div class="feature-box">
+                <div class="feature-icon">
+                    <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
+                        <rect x="4" y="20" width="4" height="8" fill="#34495e"/>
+                        <rect x="10" y="16" width="4" height="12" fill="#34495e"/>
+                        <rect x="16" y="12" width="4" height="16" fill="#34495e"/>
+                        <rect x="22" y="8" width="4" height="20" fill="#34495e"/>
+                    </svg>
+                </div>
+                <div class="feature-title">Implementation Roadmap</div>
+                <div class="feature-description">30-60-90 day action plan with success metrics</div>
+            </div>
+        </div>
+
+        <!-- Form Section -->
+        <div id="form" class="form-container">
+            <h2 class="form-title">GTM Alpha Consultation Form</h2>
+            <p class="form-subtitle">Please provide details about your business to generate a customized go-to-market strategy using the GTM Alpha methodology.</p>
+            
+            <div id="demo-notice" class="demo-notice" style="display: none;">
+                Demo mode: Form pre-filled with sample data for testing
             </div>
 
-            <div class="features">
-                <div class="feature">
-                    <h4>🔥 GTM Alpha Methodology</h4>
-                    <p>Dynamic operating system approach, not static planning</p>
-                </div>
-                <div class="feature">
-                    <h4>⚡ EPIC Framework</h4>
-                    <p>Ecosystem, Product-led, Inbound/Outbound, Community analysis</p>
-                </div>
-                <div class="feature">
-                    <h4>🛠️ Implementation Roadmap</h4>
-                    <p>30-60-90 day action plan with success metrics</p>
-                </div>
+            <div class="security-notice">
+                <span style="font-size: 1rem;">🔒</span>
+                <span>Your data is processed securely and never stored permanently.</span>
             </div>
-            
-            <form id="gtmForm">
-                <div class="form-group">
-                    <label for="client_name">👤 Your Name *</label>
-                    <input type="text" id="client_name" name="client_name" required 
-                           placeholder="Your full name for the consultation report">
+
+            <form id="consultationForm">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="client_name">Your Name <span class="required">*</span></label>
+                        <input type="text" id="client_name" name="client_name" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="client_designation">Your Title/Designation</label>
+                        <input type="text" id="client_designation" name="client_designation" class="form-control">
+                    </div>
                 </div>
-                
+
                 <div class="form-group">
-                    <label for="client_designation">💼 Your Title/Designation</label>
-                    <input type="text" id="client_designation" name="client_designation" 
-                           placeholder="e.g., CEO, CMO, VP Marketing">
+                    <label for="company_name">Company Name <span class="required">*</span></label>
+                    <input type="text" id="company_name" name="company_name" class="form-control" required>
                 </div>
-                
+
                 <div class="form-group">
-                    <label for="company_name">🏢 Company Name *</label>
-                    <input type="text" id="company_name" name="company_name" required 
-                           placeholder="Your company or organization name">
+                    <label for="company_description">Company & Product Description</label>
+                    <textarea id="company_description" name="company_description" class="form-control"></textarea>
                 </div>
-                
+
                 <div class="form-group">
-                    <label for="company_description">📝 Company & Product Description</label>
-                    <textarea id="company_description" name="company_description" 
-                              placeholder="Brief description of your company, product, or service (2-3 sentences)"></textarea>
+                    <label for="gtm_challenge">GTM Challenge & Objectives <span class="required">*</span></label>
+                    <textarea id="gtm_challenge" name="gtm_challenge" class="form-control" required></textarea>
                 </div>
-                
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="business_stage">Business Stage <span class="required">*</span></label>
+                        <select id="business_stage" name="business_stage" class="form-control" required>
+                            <option value="">Select stage</option>
+                            <option value="bootstrapped-idea">Bootstrapped: Idea Stage</option>
+                            <option value="bootstrapped-pmf">Bootstrapped: Product-Market Fit</option>
+                            <option value="bootstrapped-seed-equivalent">Bootstrapped: Seed equivalent</option>
+                            <option value="bootstrapped-series-equivalent">Bootstrapped: Series A/B/C equivalent</option>
+                            <option value="venture-pre-seed">Venture: Pre-Seed</option>
+                            <option value="venture-seed">Venture: Seed</option>
+                            <option value="venture-series-a">Venture: Series A</option>
+                            <option value="venture-series-b">Venture: Series B</option>
+                            <option value="venture-series-c">Venture: Series C+</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="industry">Industry Sector</label>
+                        <input type="text" id="industry" name="industry" class="form-control">
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="current_team_size">Current Team Size</label>
+                        <select id="current_team_size" name="current_team_size" class="form-control">
+                            <option value="">Select team size</option>
+                            <option value="1-5">1-5 (Small Team)</option>
+                            <option value="6-15">6-15 (Medium Team)</option>
+                            <option value="16-50">16-50 (Growing Team)</option>
+                            <option value="51-200">51-200 (Large Team)</option>
+                            <option value="200+">200+ (Enterprise)</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="budget_range">Monthly Marketing Budget Range</label>
+                        <select id="budget_range" name="budget_range" class="form-control">
+                            <option value="">Select budget range</option>
+                            <option value="<$10K">Less than $10K</option>
+                            <option value="$10K-$50K">$10K - $50K</option>
+                            <option value="$50K-$200K">$50K - $200K</option>
+                            <option value="$200K-$500K">$200K - $500K</option>
+                            <option value="$500K+">$500K+</option>
+                        </select>
+                    </div>
+                </div>
+
                 <div class="form-group">
-                    <label for="gtm_challenge">🎯 GTM Challenge & Objectives *</label>
-                    <textarea id="gtm_challenge" name="gtm_challenge" required 
-                              placeholder="Describe your specific GTM challenge, question, or objectives in detail">We're a B2B SaaS company struggling with enterprise customer acquisition. Our PLG motion works for SMBs but we can't crack the enterprise market. Sales cycle is too long and we lack proper reference customers for big deals.</textarea>
+                    <label for="specific_focus">Specific Focus Areas (Optional)</label>
+                    <textarea id="specific_focus" name="specific_focus" class="form-control"></textarea>
                 </div>
-                
-                <div class="form-group">
-                    <label for="business_stage">📈 Business Stage *</label>
-                    <select id="business_stage" name="business_stage" required>
-                        <option value="">Select Business Stage</option>
-                        <option value="bootstrapped-idea">🥾 Bootstrapped: 0-1 (Idea Stage)</option>
-                        <option value="bootstrapped-pmf" selected>🥾 Bootstrapped: Pre-Seed - Product Market Fit (PMF) done</option>
-                        <option value="bootstrapped-seed-equivalent">🥾 Bootstrapped: Seed Stage equivalent</option>
-                        <option value="bootstrapped-series-equivalent">🥾 Bootstrapped: Series A/B/C equivalent</option>
-                        <option value="bootstrapped-ipo-equivalent">🥾 Bootstrapped: IPO Stage equivalent</option>
-                        <option value="venture-pre-seed">💰 Venture-Funded: Pre-Seed</option>
-                        <option value="venture-seed">💰 Venture-Funded: Seed Stage</option>
-                        <option value="venture-series-a">💰 Venture-Funded: Series A</option>
-                        <option value="venture-series-b">💰 Venture-Funded: Series B</option>
-                        <option value="venture-series-c">💰 Venture-Funded: Series C</option>
-                    </select>
-                </div>
-                
-                <div class="form-group">
-                    <label for="industry">🏭 Industry Sector</label>
-                    <input type="text" id="industry" name="industry" 
-                           placeholder="e.g., Technology, Healthcare, Fintech">
-                </div>
-                
-                <div class="form-group">
-                    <label for="current_team_size">👥 Current Team Size</label>
-                    <select id="current_team_size" name="current_team_size">
-                        <option value="">Select Team Size</option>
-                        <option value="1-5">1-5 (Small Team)</option>
-                        <option value="6-15">6-15 (Growing Team)</option>
-                        <option value="16-50">16-50 (Medium Team)</option>
-                        <option value="51-200">51-200 (Large Team)</option>
-                        <option value="200+">200+ (Enterprise Team)</option>
-                    </select>
-                </div>
-                
-                <div class="form-group">
-                    <label for="budget_range">💰 Monthly Marketing Budget Range</label>
-                    <select id="budget_range" name="budget_range">
-                        <option value="">Select Budget Range</option>
-                        <option value="<$10K">Under $10K</option>
-                        <option value="$10K-$50K">$10K - $50K</option>
-                        <option value="$50K-$200K">$50K - $200K</option>
-                        <option value="$200K-$500K">$200K - $500K</option>
-                        <option value="$500K+">Over $500K</option>
-                    </select>
-                </div>
-                
-                <div class="form-group">
-                    <label for="specific_focus">🔍 Specific Focus Areas (Optional)</label>
-                    <textarea id="specific_focus" name="specific_focus" 
-                              placeholder="Any specific areas you want the consultation to focus on (e.g., pricing, positioning, channels)"></textarea>
-                </div>
-                
+
                 <div class="checkbox-group">
                     <input type="checkbox" id="confirm_new_consultation" name="confirm_new_consultation" required>
-                    <label for="confirm_new_consultation">✅ Confirm New Consultation - Check this box to confirm you want a NEW consultation analysis</label>
+                    <label for="confirm_new_consultation">Confirm New Consultation - Check this box to confirm you want a NEW consultation analysis</label>
                 </div>
-                
+
                 <button type="submit" class="submit-btn" id="submitBtn">
-                    🚀 Generate GTM Alpha Audit Report
+                    <span id="submit-text">Generate GTM Alpha Audit Report</span>
                 </button>
-                
-                <div class="loading" id="loading">
-                    <div class="spinner"></div>
-                    <h3 id="loadingTitle">🎯 Generating Your GTM Alpha Audit...</h3>
-                    <p id="loadingMessage">This typically takes 2-3 minutes to complete.</p>
+
+                <div id="progress-container" style="display: none;">
                     <div class="progress-bar">
-                        <div class="progress-fill" id="progressFill" style="width: 0%"></div>
+                        <div class="progress-fill" id="progress-fill"></div>
                     </div>
-                    <div id="progressText">Preparing consultation data...</div>
                 </div>
-                
-                <div class="success" id="success">
-                    <h3>🎉 Your GTM Alpha Audit is Ready!</h3>
-                    <p id="successMessage"></p>
-                </div>
-                
-                <div class="error" id="error">
-                    <h3>❌ Unable to Generate GTM Alpha Audit</h3>
-                    <p id="errorMessage">Please try again or contact support.</p>
-                </div>
+
+                <div id="status-message"></div>
             </form>
         </div>
+    </div>
 
-        <div class="footer">
-            <p>Created by <a href="https://gtmexpert.com/contact-shashwat-ghosh" target="_blank">Shashwat Ghosh</a> | 
-            Powered by <a href="https://apify.com/shashghosh/gtm-alpha-consultant" target="_blank">GTM Alpha Consultant</a></p>
+    <!-- Footer -->
+    <div class="footer">
+        <div class="footer-container">
+            <h2 class="footer-title">The GTM Alpha Difference</h2>
+            
+            <div class="services-grid">
+                <div class="service-box">
+                    <div class="service-title">Helix Consulting</div>
+                    <div class="service-description">AI tools & EPIC framework to optimize Go-to-Market Alpha Plays for CXOs.</div>
+                </div>
+                <div class="service-box">
+                    <div class="service-title">Hyper-Plays.com</div>
+                    <div class="service-description">Enrich CRM, Outbound support, ICP tester and buyer group persona for Sales and SDR teams</div>
+                </div>
+                <div class="service-box">
+                    <div class="service-title">GTM Fractional Expert</div>
+                    <div class="service-description">Executive-level strategic guidance for efficient scaling without overhead.</div>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                Created by <a href="https://www.linkedin.com/in/shashwatghosh/" target="_blank">Shashwat Ghosh</a> | Powered by <a href="#" target="_blank">GTM Alpha Consultant</a>
+            </div>
         </div>
     </div>
 
     <script>
-        // PRODUCTION BACKEND URL - Railway deployment
-        const BACKEND_URL = 'https://web-production-0616.up.railway.app';
+        // Check for demo mode
+        const urlParams = new URLSearchParams(window.location.search);
+        const isDemo = urlParams.get('demo') === '1';
         
-        console.log('GTM Form v8.0 - Railway Live - Loaded at:', new Date().toISOString());
-        
-        // Check backend connection on load
-        window.addEventListener('load', async function() {
-            await checkBackendStatus();
+        if (isDemo) {
+            document.getElementById('demo-notice').style.display = 'block';
             
-            // Auto-fill demo data if requested
-            if (window.location.search.includes('demo=1')) {
-                document.getElementById('client_name').value = 'Nitin Prakash';
-                document.getElementById('client_designation').value = 'Founder';
-                document.getElementById('company_name').value = 'Kamlesh Bhai and Sons';
-                document.getElementById('company_description').value = 'We are a traditional business looking to modernize our go-to-market approach with digital transformation.';
-                document.getElementById('gtm_challenge').value = 'We\'re a B2B SaaS company struggling with enterprise customer acquisition. Our PLG motion works for SMBs but we can\'t crack the enterprise market. Sales cycle is too long and we lack proper reference customers for big deals.';
-                document.getElementById('business_stage').value = 'bootstrapped-seed-equivalent';
-                document.getElementById('industry').value = 'Technology';
-                document.getElementById('current_team_size').value = '6-15';
-                document.getElementById('budget_range').value = '<$10K';
-                document.getElementById('specific_focus').value = 'Pipeline is low and unqualified leads are wasting too much time. Unable to scale due to such wastage. Too many demos but very little conversion';
-                document.getElementById('confirm_new_consultation').checked = true;
-            }
-        });
-
-        async function checkBackendStatus() {
-            const statusEl = document.getElementById('apiStatus');
-            
-            try {
-                const response = await fetch(`${BACKEND_URL}/health`, {
-                    method: 'GET',
-                    mode: 'cors'
-                });
-                
-                if (response.ok) {
-                    const data = await response.json();
-                    statusEl.className = 'api-status connected';
-                    statusEl.innerHTML = '✅ Backend connected - Ready for GTM consultations';
-                    console.log('Backend health check passed:', data);
-                } else {
-                    throw new Error(`Backend responded with ${response.status}`);
-                }
-            } catch (error) {
-                console.error('Backend health check failed:', error);
-                statusEl.className = 'api-status error';
-                statusEl.innerHTML = '❌ Backend connecting... Railway deployment may still be in progress';
-            }
+            // Pre-fill with demo data
+            document.getElementById('client_name').value = 'Shashwat Ghosh';
+            document.getElementById('client_designation').value = 'Fractional CMO and Cofounder';
+            document.getElementById('company_name').value = 'Khaitan Plus Ghosh & Sons';
+            document.getElementById('company_description').value = 'ITeS company we help in Cloud implementation of MidMarket companies';
+            document.getElementById('gtm_challenge').value = 'We\'re a B2B ITeS company struggling with enterprise customer acquisition. Our Outbound works for SMBs but we can\'t crack the enterprise market. Sales cycle is too long and we lack Sales enablement for big deals.';
+            document.getElementById('business_stage').value = 'bootstrapped-series-equivalent';
+            document.getElementById('industry').value = 'ITeS';
+            document.getElementById('current_team_size').value = '51-200';
+            document.getElementById('budget_range').value = '$10K-$50K';
+            document.getElementById('specific_focus').value = 'Community for CIO/ CTOs and CDOs is urgently required';
+            document.getElementById('confirm_new_consultation').checked = true;
         }
-        
-        document.getElementById('gtmForm').addEventListener('submit', async function(e) {
+
+        document.getElementById('consultationForm').addEventListener('submit', async function(e) {
             e.preventDefault();
-            console.log('Form submitted - calling Railway backend service');
             
             const submitBtn = document.getElementById('submitBtn');
-            const loading = document.getElementById('loading');
-            const success = document.getElementById('success');
-            const error = document.getElementById('error');
-            const successMessage = document.getElementById('successMessage');
-            const errorMessage = document.getElementById('errorMessage');
+            const submitText = document.getElementById('submit-text');
+            const statusMessage = document.getElementById('status-message');
+            const progressContainer = document.getElementById('progress-container');
+            const progressFill = document.getElementById('progress-fill');
             
-            // Hide previous messages
-            success.style.display = 'none';
-            error.style.display = 'none';
+            // Disable form and show loading
+            submitBtn.disabled = true;
+            submitText.innerHTML = '<span class="loading-spinner"></span>Generating Your Consultation...';
+            progressContainer.style.display = 'block';
             
-            // Show loading with progress
-            submitBtn.style.display = 'none';
-            loading.style.display = 'block';
-            startProgressAnimation();
-            
-            // Collect form data exactly as per Apify actor schema
+            // Collect form data
             const formData = new FormData(this);
-            const inputData = {
-                client_name: formData.get('client_name'),
-                client_designation: formData.get('client_designation') || '',
-                company_name: formData.get('company_name'),
-                company_description: formData.get('company_description') || '',
-                gtm_challenge: formData.get('gtm_challenge'),
-                business_stage: formData.get('business_stage'),
-                industry: formData.get('industry') || '',
-                current_team_size: formData.get('current_team_size') || '',
-                budget_range: formData.get('budget_range') || '',
-                specific_focus: formData.get('specific_focus') || '',
-                confirm_new_consultation: formData.has('confirm_new_consultation')
-            };
-            
-            console.log('Sending GTM consultation request to Railway:', inputData);
+            const data = Object.fromEntries(formData.entries());
+            data.confirm_new_consultation = document.getElementById('confirm_new_consultation').checked;
             
             try {
-                // Call Railway backend API
-                const response = await fetch(`${BACKEND_URL}/api/gtm-consultation`, {
+                // Simulate progress
+                let progress = 0;
+                const progressInterval = setInterval(() => {
+                    progress += Math.random() * 20;
+                    if (progress > 80) progress = 80;
+                    progressFill.style.width = progress + '%';
+                }, 500);
+                
+                statusMessage.innerHTML = '<div class="status-loading">Analyzing your GTM challenge using EPIC framework...</div>';
+                
+                // Call the API
+                const response = await fetch('https://web-production-0616.up.railway.app/api/gtm-consultation', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
                     },
-                    mode: 'cors',
-                    body: JSON.stringify(inputData)
+                    body: JSON.stringify(data)
                 });
                 
+                clearInterval(progressInterval);
+                progressFill.style.width = '100%';
+                
                 const result = await response.json();
-                console.log('Railway backend response:', result);
                 
                 if (response.ok && result.success) {
-                    // Success!
-                    loading.style.display = 'none';
-                    success.style.display = 'block';
-                    
-                    const data = result.data || result;
-                    
-                    successMessage.innerHTML = `
-                        <div style="margin: 20px 0;">
-                            <h4 style="color: white; margin-bottom: 15px;">🎉 GTM Alpha Audit Complete for ${inputData.client_name}!</h4>
-                            <p style="margin-bottom: 20px;">Your personalized GTM Alpha consultation has been successfully generated for ${inputData.company_name}.</p>
+                    statusMessage.innerHTML = `
+                        <div class="status-success">
+                            <strong>Your GTM Alpha Consultation is Ready!</strong><br><br>
+                            <strong>Primary Focus:</strong> ${result.primary_focus}<br>
+                            <strong>EPIC Scores:</strong> E:${result.epic_scores.E}, P:${result.epic_scores.P}, I:${result.epic_scores.I}, C:${result.epic_scores.C}<br><br>
+                            <a href="${result.report_url}" target="_blank" style="color: #155724; font-weight: 600; text-decoration: none;">View Your Full Consultation Report</a><br><br>
+                            <small style="color: #6c757d;">Report ID: ${result.consultation_id}</small>
                         </div>
-                        
-                        <div style="background: rgba(255,255,255,0.1); padding: 20px; border-radius: 8px; margin: 20px 0; text-align: left;">
-                            <h5 style="color: white; margin-bottom: 10px;">📊 Consultation Results:</h5>
-                            <div style="font-size: 14px; line-height: 1.8;">
-                                <strong>Run ID:</strong> ${data.runId}<br>
-                                <strong>Status:</strong> ${data.status}<br>
-                                ${data.duration ? `<strong>Duration:</strong> ${Math.round(data.duration / 1000)} seconds<br>` : ''}
-                                <strong>Generated:</strong> ${new Date().toLocaleString()}
-                            </div>
-                        </div>
-                        
-                        <div style="margin: 20px 0;">
-                            ${data.consoleUrl ? `
-                                <a href="${data.consoleUrl}" target="_blank" style="color: white; text-decoration: none; background: rgba(255,255,255,0.2); padding: 15px 25px; border-radius: 8px; display: inline-block; font-size: 16px; font-weight: 600; margin: 5px;">
-                                    🔧 View Run Details →
-                                </a>
-                            ` : ''}
-                            ${data.datasetUrl ? `
-                                <a href="${data.datasetUrl}" target="_blank" style="color: white; text-decoration: none; background: rgba(255,255,255,0.2); padding: 15px 25px; border-radius: 8px; display: inline-block; font-size: 16px; font-weight: 600; margin: 5px;">
-                                    📄 View Results →
-                                </a>
-                            ` : ''}
-                            <a href="https://calendly.com/shashwat-gtmhelix/45min" target="_blank" style="color: white; text-decoration: none; background: rgba(255,255,255,0.2); padding: 15px 25px; border-radius: 8px; display: inline-block; font-size: 16px; font-weight: 600; margin: 5px;">
-                                📅 Book Follow-up →
-                            </a>
-                        </div>
-                        
-                        <p style="margin-top: 15px; font-size: 14px; opacity: 0.9;">
-                            ✅ Professional analysis • ⚡ EPIC Framework • 🛠️ 90-day roadmap • 🎯 Personalized for ${inputData.business_stage}
-                        </p>
                     `;
                     
-                    // Auto-open report if available
-                    if (data.consoleUrl) {
-                        setTimeout(() => {
-                            window.open(data.consoleUrl, '_blank');
-                        }, 2000);
-                    }
+                    // Auto-redirect to report after 3 seconds
+                    setTimeout(() => {
+                        window.open(result.report_url, '_blank');
+                    }, 3000);
                     
                 } else {
-                    // Error from backend
-                    throw new Error(result.message || 'GTM consultation failed');
+                    throw new Error(result.error || result.details || 'Unknown error occurred');
                 }
                 
-                this.reset();
-                
-            } catch (err) {
-                console.error('Error calling Railway backend:', err);
-                
-                loading.style.display = 'none';
-                error.style.display = 'block';
-                submitBtn.style.display = 'block';
-                
-                // Handle specific error types
-                if (err.message.includes('UNDER_MAINTENANCE')) {
-                    errorMessage.innerHTML = `
-                        <p><strong>Service Temporarily Unavailable</strong></p>
-                        <p>The GTM Alpha Consultant is currently under maintenance. Please try again later.</p>
-                        <p style="margin-top: 15px;">
-                            <a href="https://calendly.com/shashwat-gtmhelix/45min" target="_blank" style="color: white; text-decoration: underline;">
-                                📅 Schedule a personal consultation instead →
-                            </a>
-                        </p>
-                    `;
-                } else if (err.message.includes('Failed to fetch') || err.message.includes('Backend not available')) {
-                    errorMessage.innerHTML = `
-                        <p><strong>Backend Service Connecting</strong></p>
-                        <p>Railway deployment may still be in progress. Please wait a few moments and try again.</p>
-                        <div style="background: rgba(255,255,255,0.1); padding: 15px; border-radius: 8px; margin: 15px 0; text-align: left;">
-                            <strong>Status:</strong> Railway deployment detected<br>
-                            <strong>Backend URL:</strong> ${BACKEND_URL}<br>
-                            <strong>Try again in:</strong> 2-3 minutes<br><br>
-                            <strong>Alternative:</strong> <a href="https://console.apify.com/actors/shashghosh~gtm-alpha-consultant" target="_blank" style="color: white;">Use Apify Console</a>
-                        </div>
-                    `;
-                } else {
-                    errorMessage.innerHTML = `
-                        <p><strong>Error:</strong> ${err.message}</p>
-                        <p style="margin-top: 15px;">Please try again or contact our support team.</p>
-                    `;
-                }
+            } catch (error) {
+                console.error('Error:', error);
+                statusMessage.innerHTML = `
+                    <div class="status-error">
+                        <strong>Consultation Failed</strong><br>
+                        ${error.message}<br><br>
+                        <small>Please try again or contact support if the issue persists.</small>
+                    </div>
+                `;
+            } finally {
+                // Re-enable form
+                submitBtn.disabled = false;
+                submitText.innerHTML = 'Generate GTM Alpha Audit Report';
+                setTimeout(() => {
+                    progressContainer.style.display = 'none';
+                    progressFill.style.width = '0%';
+                }, 2000);
             }
         });
 
-        function startProgressAnimation() {
-            const progressFill = document.getElementById('progressFill');
-            const progressText = document.getElementById('progressText');
-            const loadingTitle = document.getElementById('loadingTitle');
-            
-            let progress = 0;
-            const steps = [
-                { progress: 10, text: 'Connecting to Railway backend...', title: '🚀 Connecting to Backend...' },
-                { progress: 25, text: 'Calling GTM Alpha Consultant...', title: '🎯 Starting GTM Analysis...' },
-                { progress: 40, text: 'Running EPIC Framework analysis...', title: '⚡ Analyzing EPIC Framework...' },
-                { progress: 60, text: 'Generating strategic recommendations...', title: '🧠 Creating Recommendations...' },
-                { progress: 80, text: 'Building implementation roadmap...', title: '🛠️ Building Roadmap...' },
-                { progress: 95, text: 'Finalizing consultation report...', title: '📄 Generating Report...' }
-            ];
-            
-            let currentStep = 0;
-            
-            const interval = setInterval(() => {
-                if (currentStep < steps.length) {
-                    const step = steps[currentStep];
-                    progressFill.style.width = step.progress + '%';
-                    progressText.textContent = step.text;
-                    loadingTitle.textContent = step.title;
-                    currentStep++;
-                } else {
-                    progressFill.style.width = '100%';
-                    progressText.textContent = 'Almost done...';
-                    clearInterval(interval);
-                }
-            }, 25000); // 25 seconds per step, total ~2.5 minutes
-        }
+        // Smooth scroll to form when FREE Analysis button is clicked
+        document.querySelector('.free-analysis-btn').addEventListener('click', function(e) {
+            e.preventDefault();
+            document.getElementById('form').scrollIntoView({
+                behavior: 'smooth'
+            });
+        });
     </script>
 </body>
 </html>
