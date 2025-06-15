@@ -413,8 +413,8 @@
                                        placeholder="e.g., John Smith">
                             </div>
                             <div class="form-group">
-                                <label for="client_designation">Your Role/Title</label>
-                                <input type="text" id="client_designation" name="client_designation" 
+                                <label for="client_designation">Your Role/Title *</label>
+                                <input type="text" id="client_designation" name="client_designation" required
                                        placeholder="e.g., CEO, CMO, Founder">
                             </div>
                         </div>
@@ -426,8 +426,8 @@
                                        placeholder="e.g., TechCorp Inc.">
                             </div>
                             <div class="form-group">
-                                <label for="industry">Industry</label>
-                                <select id="industry" name="industry">
+                                <label for="industry">Industry *</label>
+                                <select id="industry" name="industry" required>
                                     <option value="">Select Industry</option>
                                     <option value="Technology">Technology</option>
                                     <option value="SaaS">SaaS</option>
@@ -443,8 +443,8 @@
                         </div>
 
                         <div class="form-group">
-                            <label for="company_description">Company Description</label>
-                            <textarea id="company_description" name="company_description" 
+                            <label for="company_description">Company Description *</label>
+                            <textarea id="company_description" name="company_description" required
                                       placeholder="Brief description of your company, products, and target market..."></textarea>
                         </div>
 
@@ -456,13 +456,14 @@
 
                         <div class="form-row">
                             <div class="form-group">
-                                <label for="business_stage">Business Stage</label>
-                                <select id="business_stage" name="business_stage">
+                                <label for="business_stage">Business Stage *</label>
+                                <select id="business_stage" name="business_stage" required>
+                                    <option value="">Select Business Stage</option>
                                     <option value="idea-stage">Idea Stage</option>
                                     <option value="mvp-development">MVP Development</option>
                                     <option value="pre-revenue">Pre-Revenue</option>
                                     <option value="early-revenue">Early Revenue</option>
-                                    <option value="bootstrapped-pmf" selected>Bootstrapped - Product Market Fit</option>
+                                    <option value="bootstrapped-pmf">Bootstrapped - Product Market Fit</option>
                                     <option value="bootstrapped-series-equivalent">Bootstrapped - Series Equivalent</option>
                                     <option value="funded-seed">Funded - Seed</option>
                                     <option value="funded-series-a">Funded - Series A</option>
@@ -471,25 +472,22 @@
                                 </select>
                             </div>
                             <div class="form-group">
-                                <label for="current_team_size">Current Team Size</label>
-                                <select id="current_team_size" name="current_team_size">
+                                <label for="current_team_size">Current Team Size *</label>
+                                <select id="current_team_size" name="current_team_size" required>
                                     <option value="">Select Team Size</option>
-                                    <option value="1-5">1-5 people</option>
-                                    <option value="6-10">6-10 people</option>
-                                    <option value="11-25">11-25 people</option>
-                                    <option value="26-50">26-50 people</option>
-                                    <option value="51-100">51-100 people</option>
-                                    <option value="101-200">101-200 people</option>
-                                    <option value="201-500">201-500 people</option>
-                                    <option value="500+">500+ people</option>
+                                    <option value="1-5">1-5</option>
+                                    <option value="6-15">6-15</option>
+                                    <option value="16-50">16-50</option>
+                                    <option value="51-200">51-200</option>
+                                    <option value="200+">200+</option>
                                 </select>
                             </div>
                         </div>
 
                         <div class="form-row">
                             <div class="form-group">
-                                <label for="budget_range">Budget Range for GTM</label>
-                                <select id="budget_range" name="budget_range">
+                                <label for="budget_range">Budget Range for GTM *</label>
+                                <select id="budget_range" name="budget_range" required>
                                     <option value="">Select Budget Range</option>
                                     <option value="Under $10K">Under $10K</option>
                                     <option value="$10K-$25K">$10K-$25K</option>
@@ -502,8 +500,8 @@
                                 </select>
                             </div>
                             <div class="form-group">
-                                <label for="specific_focus">Specific Focus Area</label>
-                                <input type="text" id="specific_focus" name="specific_focus" 
+                                <label for="specific_focus">Specific Focus Area *</label>
+                                <input type="text" id="specific_focus" name="specific_focus" required
                                        placeholder="e.g., Lead generation, Sales enablement, Market expansion">
                             </div>
                         </div>
@@ -531,7 +529,7 @@
     </div>
 
     <script>
-        // GTM Alpha Frontend - JavaScript Fix ONLY
+        // GTM Alpha Frontend - JavaScript Fix with CORRECT Values
         document.addEventListener('DOMContentLoaded', function() {
             const form = document.getElementById('gtmForm');
             const resultDiv = document.getElementById('result');
