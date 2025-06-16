@@ -27,7 +27,7 @@
             margin: 0 auto;
         }
 
-        /* Header with GTM Alpha Logo */
+        /* Header with GTM Alpha Logo - EXACTLY like your image */
         .header {
             text-align: center;
             margin-bottom: 40px;
@@ -38,39 +38,42 @@
             align-items: center;
             justify-content: center;
             margin-bottom: 20px;
+            gap: 15px;
         }
 
         .gtm-logo .gtm-text {
-            font-size: 3rem;
+            font-size: 4rem;
             font-weight: 300;
             color: #fff;
-            margin-right: 10px;
+            letter-spacing: 2px;
         }
 
         .gtm-logo .alpha-badge {
             background: #ff6b4a;
             color: white;
-            font-size: 1.5rem;
+            font-size: 2rem;
             font-weight: 500;
-            padding: 8px 16px;
+            padding: 12px 20px;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            min-width: 60px;
-            min-height: 60px;
+            min-width: 80px;
+            min-height: 80px;
+            box-shadow: 0 4px 15px rgba(255, 107, 74, 0.3);
         }
 
         .header h1 {
             color: #fff;
-            font-size: 3rem;
+            font-size: 3.5rem;
             font-weight: 300;
             margin-bottom: 10px;
+            letter-spacing: 1px;
         }
 
         .header .subtitle {
             color: #999;
-            font-size: 1.2rem;
+            font-size: 1.3rem;
             font-weight: 300;
         }
 
@@ -418,13 +421,13 @@
             }
 
             .gtm-logo .gtm-text {
-                font-size: 2.5rem;
+                font-size: 3rem;
             }
 
             .gtm-logo .alpha-badge {
-                font-size: 1.2rem;
-                min-width: 50px;
-                min-height: 50px;
+                font-size: 1.5rem;
+                min-width: 60px;
+                min-height: 60px;
             }
         }
 
@@ -445,7 +448,7 @@
                 <span class="gtm-text">GTM</span>
                 <span class="alpha-badge">α</span>
             </div>
-            <h1>GTM Alpha Consultation</h1>
+            <h1>Consultation</h1>
             <p class="subtitle">Get expert Go-To-Market strategy using Shashwat Ghosh's proven methodology</p>
         </div>
 
@@ -535,16 +538,20 @@
                                 <label for="business_stage">Business Stage *</label>
                                 <select id="business_stage" name="business_stage" required>
                                     <option value="">Select Business Stage</option>
-                                    <option value="idea-stage">Idea Stage</option>
-                                    <option value="mvp-development">MVP Development</option>
-                                    <option value="pre-revenue">Pre-Revenue</option>
-                                    <option value="early-revenue">Early Revenue</option>
-                                    <option value="bootstrapped-pmf">Bootstrapped - Product Market Fit</option>
+                                    <option value="bootstrapped-idea">Bootstrapped - Idea</option>
+                                    <option value="bootstrapped-pmf">Bootstrapped - PMF</option>
+                                    <option value="bootstrapped-seed-equivalent">Bootstrapped - Seed Equivalent</option>
                                     <option value="bootstrapped-series-equivalent">Bootstrapped - Series Equivalent</option>
-                                    <option value="funded-seed">Funded - Seed</option>
-                                    <option value="funded-series-a">Funded - Series A</option>
-                                    <option value="funded-series-b-plus">Funded - Series B+</option>
-                                    <option value="enterprise">Enterprise</option>
+                                    <option value="bootstrapped-ipo-equivalent">Bootstrapped - IPO Equivalent</option>
+                                    <option value="venture-pre-seed">Venture - Pre-seed</option>
+                                    <option value="venture-seed">Venture - Seed</option>
+                                    <option value="venture-series-a">Venture - Series A</option>
+                                    <option value="venture-series-b">Venture - Series B</option>
+                                    <option value="venture-series-c">Venture - Series C</option>
+                                    <option value="venture-series-d-plus">Venture - Series D+</option>
+                                    <option value="ipo-stage">IPO Stage</option>
+                                    <option value="mid-sized-company">Mid-sized Company</option>
+                                    <option value="large-company">Large Company</option>
                                 </select>
                             </div>
                             <div class="form-group">
