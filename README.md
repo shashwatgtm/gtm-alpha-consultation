@@ -1,82 +1,56 @@
-# GTM Alpha Consultation Form
+# GTM Alpha Consultation Form (historical)
 
-🎯 **Expert Go-To-Market strategy analysis using Shashwat Ghosh's proven GTM Alpha methodology and EPIC framework**
+This is a historical form, replaced by https://gtmalpha.gtmhelix.com/consultation.
 
-## ✅ Live Form
-**Access the live consultation form at:** https://shashwatgtm.github.io/gtm-alpha-consultation/
+This repository holds one file, `index.html`. The page is still published from it at https://shashwatgtm.github.io/gtm-alpha-consultation/, but it is kept only as an archive. Use the address above for a consultation.
 
-## 🚀 NEW: Ultra-Simple Workflow (v5.0)
+## What index.html does
 
-**No more complex steps!** Simply:
-1. Fill out the 5-field form 
-2. Click submit
-3. Download your personalized GTM report instantly
+It is a single static page: HTML, CSS and one inline script, with no build step and no package. The form on it is called "GTM Alpha Consultation Form".
 
-## 🔥 Features
-- **GTM Alpha Methodology**: Dynamic operating system approach, not static planning
-- **EPIC Framework**: Ecosystem, Product-led, Inbound/Outbound, Community analysis  
-- **Instant Report Generation**: Professional HTML reports generated immediately
-- **One-Click Download**: No external dependencies or manual steps
-- **Personalized Analysis**: Reports tailored with your actual name and company details
+### The ten fields it sends
 
-## 🛠️ How It Works
-1. **Fill the Form**: Just 5 essential fields (Name, Company, Challenge, Stage, Industry)
-2. **Submit & Wait**: Automated analysis takes 2-3 minutes 
-3. **Download Report**: Get your professional HTML consultation report
-4. **Implement Strategy**: Follow the 30-60-90 day roadmap provided
+When the form is submitted, the script reads these ten fields (the names are the JSON keys it sends):
 
-## 🎯 Perfect For
-- Startup Founders struggling with GTM strategy
-- Marketing Leaders optimizing customer acquisition
-- Sales Leaders seeking alignment with marketing teams
-- Product Managers planning go-to-market launches
-- Anyone needing expert GTM insights without the consultant fees
+1. `client_name` (Your Name)
+2. `client_designation` (Your Role/Title)
+3. `company_name` (Company Name)
+4. `company_description` (Company Description)
+5. `gtm_challenge` (Primary GTM Challenge)
+6. `business_stage` (Business Stage, a drop-down)
+7. `industry` (Industry, a drop-down)
+8. `current_team_size` (Current Team Size, a drop-down)
+9. `budget_range` (Budget Range for GTM, a drop-down)
+10. `specific_focus` (Specific Focus Area)
 
-## 📊 What You Get
-- **Professional HTML Report** with your details
-- **EPIC Framework Scores** tailored to your business stage
-- **Strategic Recommendations** based on your specific challenges
-- **90-Day Implementation Roadmap** with actionable next steps
-- **Success Metrics** to track your GTM optimization progress
+The form also has a required checkbox, `confirm_consultation`. It must be ticked to submit, but it is not one of the ten values sent (index.html lines 654 to 665).
 
-## 🚀 Technical Details
-- **Frontend**: Pure HTML/CSS/JavaScript (v5.0 - Simple Flow)
-- **Processing**: Client-side report generation
-- **Output**: Professional HTML consultation reports
-- **Hosting**: GitHub Pages
-- **Dependencies**: None - works completely standalone
+### Where it posts
 
-## 🆕 Version 5.0 Major Improvements
-- ✅ **Eliminated Complex Workflow**: No more JSON copy-pasting or manual Apify steps
-- ✅ **Streamlined Form**: Reduced from 10+ fields to 5 essential ones
-- ✅ **Instant Results**: Reports generated in 2-3 minutes, not manual processes
-- ✅ **One-Click Download**: Professional reports download automatically
-- ✅ **User-Friendly**: Anyone can use it without technical knowledge
-- ✅ **Professional Output**: Same quality reports, zero friction
+The backend address is set at index.html line 619: `https://web-production-0616.up.railway.app`.
 
-## 🔧 Demo & Testing
-- **Test with sample data**: [Demo Mode](https://shashwatgtm.github.io/gtm-alpha-consultation/?demo=1)
-- **Live form**: [Production Version](https://shashwatgtm.github.io/gtm-alpha-consultation/)
+- On submit, the page sends the ten fields as JSON with a POST to `https://web-production-0616.up.railway.app/api/gtm-consultation` (index.html line 669).
+- It then shows the backend's reply on the page: a consultation id, a primary focus, four EPIC scores (E, P, I, C), and links that the backend returns (a report link, a console link and a dataset link). The page puts that reply into the HTML as text it receives from the backend.
 
-## 💡 Why This Approach Works
-The previous version required users to:
-1. Fill complex forms with 10+ fields
-2. Copy JSON data manually  
-3. Navigate to external Apify platform
-4. Paste data and run actors
-5. Wait and hope for results
+### The health request on page load
 
-**v5.0 eliminates all friction:**
-- Simple 5-field form
-- One-click submission  
-- Instant professional reports
-- Zero technical barriers
+As soon as the page loads, it sends a GET request to `https://web-production-0616.up.railway.app/health` (index.html lines 622 and 626). It only writes the result to the browser console: whether the reply says `healthy` and whether `apifyClientReady` is set. Nothing on the page changes because of it.
 
-## 📞 Contact
-Created by **Shashwat Ghosh** - [GTM Expert](https://gtmexpert.com/contact-shashwat-ghosh)
+### Other things in the file
 
-For personalized consultation: [Book a session](https://calendly.com/shashwat-gtmhelix/45min)
+- The form tag carries the attributes `toolname`, `tooldescription` and `toolautosubmit`, which describe the form to software that can fill in and submit forms for a user.
+- The page does not generate a report itself, and it has no demo mode. Any report comes from the backend.
 
----
+## What this repository cannot show
 
-*Powered by GTM Alpha Methodology - Now with Zero-Friction User Experience*
+- The backend's code is not in this repository. What the backend stores, where, and for how long is not documented here, and nothing in this repo proves it.
+- The page itself shows the sentence "Your data is processed securely and never stored permanently." That is text written on the page. This repository cannot confirm it.
+- Whether the backend address above still answers is not shown here either.
+
+## Archive status
+
+This repository is an archive candidate. Archiving it is an account step for the owner.
+
+## Contact
+
+Shashwat Ghosh: https://gtmexpert.com/contact-shashwat-ghosh
