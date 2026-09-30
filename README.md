@@ -30,7 +30,7 @@ The form also has a required checkbox, `confirm_consultation`. It must be ticked
 The backend address is set at index.html line 619: `https://web-production-0616.up.railway.app`.
 
 - On submit, the page sends the ten fields as JSON with a POST to `https://web-production-0616.up.railway.app/api/gtm-consultation` (index.html line 669).
-- It then shows the backend's reply on the page: a consultation id, a primary focus, four EPIC scores (E, P, I, C), and links that the backend returns (a report link, a console link and a dataset link). The page puts that reply into the HTML as text it receives from the backend.
+- It then shows the backend's reply on the page: a consultation id, a primary focus, four EPIC scores (E, P, I, C), and links that the backend returns (a report link, a console link and a dataset link). The page inserts that reply into itself as HTML.
 
 ### The health request on page load
 
